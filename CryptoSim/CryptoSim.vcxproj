@@ -111,6 +111,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mvc\Controller.cpp" />
+    <ClCompile Include="mvc\Event.cpp" />
+    <ClCompile Include="mvc\Input.cpp" />
+    <ClCompile Include="mvc\Model.cpp" />
+    <ClCompile Include="mvc\Notice.cpp" />
+    <ClCompile Include="mvc\Viewer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mvc\Controller.h" />
+    <ClInclude Include="mvc\ControllerInterface.h" />
+    <ClInclude Include="mvc\debug.h" />
+    <ClInclude Include="mvc\Event.h" />
+    <ClInclude Include="mvc\Input.h" />
+    <ClInclude Include="mvc\Model.h" />
+    <ClInclude Include="mvc\ModelInterface.h" />
+    <ClInclude Include="mvc\Notice.h" />
+    <ClInclude Include="mvc\Viewer.h" />
+    <ClInclude Include="mvc\ViewerInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
