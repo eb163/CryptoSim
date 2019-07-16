@@ -25,17 +25,7 @@ Controller::Controller(Model& m, Viewer& v)
 
 Controller::~Controller()
 {
-	if (mptr != nullptr)
-	{
-		delete mptr;
-		mptr = nullptr;
-	}
 
-	if (vptr != nullptr)
-	{
-		delete vptr;
-		vptr = nullptr;
-	}
 }
 
 void Controller::connectModel(Model & m)
