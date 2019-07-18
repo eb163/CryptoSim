@@ -110,6 +110,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="blockchain\Block.cpp" />
+    <ClCompile Include="blockchain\Blockchain.cpp" />
+    <ClCompile Include="blockchain\sha256.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mvc\Controller.cpp" />
     <ClCompile Include="mvc\Event.cpp" />
@@ -119,6 +122,9 @@
     <ClCompile Include="mvc\Viewer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blockchain\Block.h" />
+    <ClInclude Include="blockchain\Blockchain.h" />
+    <ClInclude Include="blockchain\sha256.h" />
     <ClInclude Include="mvc\Controller.h" />
     <ClInclude Include="mvc\ControllerInterface.h" />
     <ClInclude Include="mvc\debug.h" />
