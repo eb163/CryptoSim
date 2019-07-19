@@ -120,6 +120,7 @@
     <ClCompile Include="mvc\Model.cpp" />
     <ClCompile Include="mvc\Notice.cpp" />
     <ClCompile Include="mvc\Viewer.cpp" />
+    <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blockchain\Block.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="mvc\Notice.h" />
     <ClInclude Include="mvc\Viewer.h" />
     <ClInclude Include="mvc\ViewerInterface.h" />
+    <ClInclude Include="Transaction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
