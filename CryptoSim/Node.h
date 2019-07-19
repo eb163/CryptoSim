@@ -3,6 +3,7 @@
 #include <string>
 #include "Transaction.h"
 #include "blockchain/Blockchain.h"
+#include "mvc/debug.h"
 
 
 using std::vector;
@@ -27,7 +28,7 @@ public:
 	void addConnection(Node* nptr);
 	bool isConnected(Node* nptr);
 	
-	void notifyNeighbors();
-	void updateBlockChain(Blockchain newBC);
+	void notifyNeighbors();						//to implement later
+	void updateBlockChain(Blockchain newBC);	//to implement later
 };
 

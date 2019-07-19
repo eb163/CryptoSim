@@ -1,7 +1,5 @@
 #include "Node.h"
 
-
-
 Node::Node()
 {
 
@@ -61,10 +59,10 @@ bool Node::isConnected(Node * nptr)
 
 void Node::notifyNeighbors()
 {
-
+	cout << "NEED TO IMPLEMENT Node.notifyNeighbors()" << endl;
 }
 
 void Node::updateBlockChain(Blockchain newBC)
 {
-
+	cout << "NEED TO IMPLEMENT Node.updateBlockChain(Blockchain newBC)" << endl;
 }
