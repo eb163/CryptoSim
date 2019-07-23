@@ -1,6 +1,6 @@
 #include "Blockchain.h"
 Blockchain::Blockchain() {
-    bChain.emplace_back(Block(0, "Genesis Block"));
+    bChain.emplace_back(Block(0, Transaction(time(0), 0, "Genesis", "Genesis")));
     _nDifficulty = 3; //originally 10, but 10 takes a while for testing
 }
 void Blockchain::AddBlock(Block bNew) {

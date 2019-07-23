@@ -113,6 +113,7 @@
     <ClCompile Include="blockchain\Block.cpp" />
     <ClCompile Include="blockchain\Blockchain.cpp" />
     <ClCompile Include="blockchain\sha256.cpp" />
+    <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mvc\Controller.cpp" />
@@ -121,13 +122,16 @@
     <ClCompile Include="mvc\Model.cpp" />
     <ClCompile Include="mvc\Notice.cpp" />
     <ClCompile Include="mvc\Viewer.cpp" />
+    <ClCompile Include="Network.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="tests.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blockchain\Block.h" />
     <ClInclude Include="blockchain\Blockchain.h" />
     <ClInclude Include="blockchain\sha256.h" />
+    <ClInclude Include="DataManager.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="mvc\Controller.h" />
     <ClInclude Include="mvc\ControllerInterface.h" />
@@ -139,7 +143,9 @@
     <ClInclude Include="mvc\Notice.h" />
     <ClInclude Include="mvc\Viewer.h" />
     <ClInclude Include="mvc\ViewerInterface.h" />
+    <ClInclude Include="Network.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="tests.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,13 +1,37 @@
 #include "Block.h"
 #include "sha256.h"
 
+/*
 Block::Block(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIndexIn), _sData(sDataIn) {
     _nNonce = -1;
     _tTime = time(nullptr);
 }
+*/
 	
+Block::Block(uint32_t nIndexIn, Transaction sDataIn)
+{
+	_nNonce = -1;
+	_tTime = time(nullptr);
+	_nIndex = nIndexIn;
+	_sData = sDataIn;
+	_sData.makeConstant();
+
+}
+
 string Block::GetHash() {
     return _sHash;
+}
+
+/*
+string Block::GetData()
+{
+	return _sData;
+}
+*/
+
+Transaction Block::GetData()
+{
+	return _sData;
 }
 
 void Block::MineBlock(uint32_t nDifficulty) {
@@ -24,13 +48,23 @@ void Block::MineBlock(uint32_t nDifficulty) {
         _sHash = _CalculateHash();
     } while (_sHash.substr(0, nDifficulty) != str);
 
-    cout << "Block mined: " << _sHash << endl;
+//    cout << "Block mined: " << _sHash << endl;
 }
 
 
-inline string Block::_CalculateHash() const {
+inline string Block::_CalculateHash() {
+	string dataString;
+	//timestamp
+	dataString += to_string(_sData.getTimestamp());
+	//amount
+	dataString += to_string(_sData.getAmount());
+	//senderID
+	dataString += _sData.getSenderID();
+	//recieverID
+	dataString += _sData.getReceiverID();
+
     stringstream ss;
-    ss << _nIndex << _tTime << _sData << _nNonce << sPrevHash;
+    ss << _nIndex << _tTime << dataString << _nNonce << sPrevHash;
 
     return sha256(ss.str());
 }

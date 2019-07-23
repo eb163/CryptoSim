@@ -11,9 +11,19 @@ Node::~Node()
 
 }
 
+void Node::connectDataManager(DataManager * mngr)
+{
+	manager = mngr;
+}
+
 string Node::getID()
 {
 	return ID;
+}
+
+void Node::setID(string id)
+{
+	ID = id;
 }
 
 Block Node::getBlock(int i)
@@ -23,7 +33,17 @@ Block Node::getBlock(int i)
 
 int Node::getChainSize()
 {
-	return chain.getSize();
+	int size = 0;
+	if (chain.getSize() > 0)
+	{
+		size = chain.getSize() - 1;
+	}
+	return size;
+}
+
+Blockchain Node::getBlockchain() const
+{
+	return chain;
 }
 
 void Node::addConnection(Node * nptr)
@@ -42,13 +62,13 @@ bool Node::isConnected(Node * nptr)
 	int i = 0;
 	do
 	{
-		if (connections.at(i) == nptr)
+		if (i >= connections.size())
 		{
-			result = true;
 			go = false;
 		}
-		if (i > connections.size())
+		else if (connections.at(i) == nptr)
 		{
+			result = true;
 			go = false;
 		}
 		++i;
@@ -57,12 +77,88 @@ bool Node::isConnected(Node * nptr)
 	return result;
 }
 
-void Node::notifyNeighbors()
+int Node::getBalance()
 {
-	cout << "NEED TO IMPLEMENT Node.notifyNeighbors()" << endl;
+	return balance;
 }
 
-void Node::updateBlockChain(Blockchain newBC)
+void Node::editBalance(float delta)
 {
-	cout << "NEED TO IMPLEMENT Node.updateBlockChain(Blockchain newBC)" << endl;
+	balance += delta;
+}
+
+void Node::addTransaction(Transaction t)
+{
+	float amt = t.getAmount();
+	if(getID() == t.getSenderID())
+	{
+		amt = abs(amt) * -1; //sets to negative
+	}
+	else if (getID() == t.getReceiverID())
+	{
+		amt = abs(amt) * 1; //sets to positive
+	}
+	editBalance(amt);
+
+	Block b(chain.getSize() + 1, t);
+	chain.AddBlock(b);
+
+	generateCrypto();
+
+	notifyNeighbors();
+}
+
+void Node::notifyNeighbors()
+{
+	cout << "Node(" << this <<") is notifying all Neighbor nodes..." << endl;
+
+	//process: for each connection
+	//call connection(i)->updateBlockChain(this.getBlockChain())
+
+	if (connections.size() > 0)
+	{
+		for (int i = 0; i < connections.size(); ++i)
+		{
+			connections.at(i)->updateBlockChain(this);
+		}
+	}
+}
+
+void Node::updateBlockChain(Node* nptr)
+{
+	cout << "Node("<<this<<").updateBlockChain()..." << endl;
+	
+	//method: find the difference in size between this blockchain and newBlockchain
+	//copy any blocks from the newBC located past the index difference
+
+	int diff = (nptr->getChainSize()) - (this->getChainSize());
+	if (diff <= 0) //if nptr's chain is smaller than or equal to this node's chain, this node doesn't need to update
+		return;
+	else
+	{
+		for (int i = this->getChainSize(); i < nptr->getChainSize(); ++i)
+		{
+			cout << "i = " << i << endl;
+			Block newBlock = nptr->getBlockchain().getBlock(i);
+			cout << "Node(" << this << ") loaded Block(" << newBlock.GetHash() << ")" << endl;
+			chain.AddBlock(newBlock);
+
+			generateCrypto();
+		}
+		notifyNeighbors(); //update neighbor nodes
+	}
+
+}
+
+bool Node::generateCrypto()
+{
+	bool result = false;
+	if (manager != nullptr)
+	{
+		balance += manager->getCryptoPerMine();
+		manager->addToTotalCrypto(manager->getCryptoPerMine());
+		cout << "Node(" << this << ") earned " << manager->getCryptoPerMine() << " crypto for modifying its Blockchain!" << endl;
+		result = true;
+	}
+	return result;
 }

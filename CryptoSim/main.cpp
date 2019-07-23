@@ -8,11 +8,16 @@
 #include "mvc/Notice.h"
 #include "mvc/Viewer.h"
 #include "mvc/ViewerInterface.h"
+#include "Node.h"
+//#include "Network.h"
+#include "Driver.h"
 
 
 #include "blockchain/sha256.h"
-//#include "blockchain/Block.h"
+#include "blockchain/Block.h"
 #include "blockchain/Blockchain.h"
+
+#include "tests.h"
 
 int main()
 {
@@ -23,15 +28,9 @@ int main()
 	ctrl.connectModel(model);
 	ctrl.connectViewer(view);
 
-	Block b1(1, "Block 1"), b2(2, "Block 2"), b3(3, "Block 3");
+	//unitTestNode();
+	//unitTestDriver();
 
-	//demonstrating the blockchain
-	Blockchain chain;
-	cout << "Created a Blockchain" << endl;
-	chain.AddBlock(b1);
-	chain.AddBlock(b2);
-	chain.AddBlock(b3);
-	
 	//example loop of MVC framework
 	//loop runs until Controller.pause() is called
 	//right now this is an unending loop
