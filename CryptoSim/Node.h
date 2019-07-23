@@ -34,6 +34,8 @@ public:
 
 	void addConnection(Node* nptr);
 	bool isConnected(Node* nptr);
+	Node* getConnection(int i); //for debugging
+	int getTotalConnections(); //for debugging
 
 	int getBalance();
 	void editBalance(float delta);

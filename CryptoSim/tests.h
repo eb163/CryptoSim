@@ -1,4 +1,3 @@
-
 #pragma once
 #include "blockchain\Block.h"
 #include "blockchain\Blockchain.h"
@@ -17,6 +16,8 @@ void printDataManager(DataManager& m);
 void unitTestBlockchain();
 
 void unitTestNode();
+
+void unitTestNetwork();
 
 void unitTestDriver();
 

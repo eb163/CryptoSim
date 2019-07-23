@@ -29,17 +29,18 @@ int main()
 	ctrl.connectViewer(view);
 
 	//unitTestNode();
+	unitTestNetwork();
 	//unitTestDriver();
 
 	//example loop of MVC framework
 	//loop runs until Controller.pause() is called
 	//right now this is an unending loop
-	/*
+	
 	do
 	{
 		view.loop();	//View can check for input
 		ctrl.loop();	//Ctrl activates an update cycle, checks for inputs from view, sends any events to model, and prompts model and view to update
 	} while (ctrl.isRunning() == true);
-	*/
+	
 	return 0;
 }

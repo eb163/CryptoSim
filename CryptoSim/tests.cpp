@@ -96,9 +96,31 @@ void unitTestNode()
 
 }
 
+void unitTestNetwork()
+{
+	cout << "Testing Network object and methods..." << endl;
+	int nodeLimit = 4;
+	DataManager mngr;
+	Network* nw;
+
+	for (int i = 0; i < nodeLimit; ++i)
+	{
+		cout << "Creating a Network with " << i << " Nodes." << endl;
+		nw = new Network(&mngr, i);
+
+		pause();
+
+		if (nw != nullptr)
+		{
+			delete nw;
+			nw = nullptr;
+		}
+	}
+}
+
 void unitTestDriver()
 {
-	cout << "Testng Driver methods..." << endl;
+	cout << "Testing Driver methods..." << endl;
 
 	DataManager manager;
 	manager.setCryptoPerMine(12.00);

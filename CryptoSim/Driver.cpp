@@ -66,6 +66,8 @@ void Driver::addTransaction()
 	//get 2 different random index values between 0 and nw.getSize()
 	n1 = rand() % nw->getSize();
 	n2 = rand() % nw->getSize();
+	cout << "Transaction sender = " << nw->getNode(n1)->getID() << endl;
+	cout << "Transaction receiver = " << nw->getNode(n2)->getID() << endl;
 
 	//create a transaction between the two nodes
 	Transaction t;

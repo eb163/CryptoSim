@@ -4,7 +4,9 @@
 
 DataManager::DataManager()
 {
-
+	totalCrypto = 0;
+	totalTransactions = 0;
+	cryptoPerMine = 0;
 }
 
 

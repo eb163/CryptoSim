@@ -2,7 +2,8 @@
 
 Node::Node()
 {
-
+	balance = 0;
+	manager = nullptr;
 }
 
 
@@ -48,8 +49,10 @@ Blockchain Node::getBlockchain() const
 
 void Node::addConnection(Node * nptr)
 {
+	//cout << "Node(" << this->getID() << ").addConnection(" << nptr->getID() <<")" << endl;
 	if (isConnected(nptr) == false)
 	{
+		cout << "Connecting " << this->getID() << " to " << nptr->getID() << endl;
 		connections.push_back(nptr);
 		nptr->addConnection(this);
 	}
@@ -75,6 +78,17 @@ bool Node::isConnected(Node * nptr)
 	} while (go);
 
 	return result;
+}
+
+Node * Node::getConnection(int i)
+{
+	Node* ptr = connections.at(i);
+	return ptr;
+}
+
+int Node::getTotalConnections()
+{
+	return connections.size();
 }
 
 int Node::getBalance()
@@ -110,7 +124,7 @@ void Node::addTransaction(Transaction t)
 
 void Node::notifyNeighbors()
 {
-	cout << "Node(" << this <<") is notifying all Neighbor nodes..." << endl;
+	cout << "Node(" << getID() <<") is notifying all Neighbor nodes..." << endl;
 
 	//process: for each connection
 	//call connection(i)->updateBlockChain(this.getBlockChain())
@@ -119,6 +133,7 @@ void Node::notifyNeighbors()
 	{
 		for (int i = 0; i < connections.size(); ++i)
 		{
+			cout << "Next node: " << connections.at(i) << endl;
 			connections.at(i)->updateBlockChain(this);
 		}
 	}
@@ -126,7 +141,7 @@ void Node::notifyNeighbors()
 
 void Node::updateBlockChain(Node* nptr)
 {
-	cout << "Node("<<this<<").updateBlockChain()..." << endl;
+	cout << "Node("<<getID()<<").updateBlockChain()..." << endl;
 	
 	//method: find the difference in size between this blockchain and newBlockchain
 	//copy any blocks from the newBC located past the index difference
@@ -136,11 +151,15 @@ void Node::updateBlockChain(Node* nptr)
 		return;
 	else
 	{
+		cout << "Node(" << getID() << ").blockChain.size() = " << getChainSize() << endl;
+		cout << "Node(" << nptr->getID() << ").blockChain.size() = " << nptr->getChainSize() << endl;
+		cout << "diff = " << diff << endl;
+
 		for (int i = this->getChainSize(); i < nptr->getChainSize(); ++i)
 		{
 			cout << "i = " << i << endl;
 			Block newBlock = nptr->getBlockchain().getBlock(i);
-			cout << "Node(" << this << ") loaded Block(" << newBlock.GetHash() << ")" << endl;
+			cout << "Node(" << getID() << ") loaded Block(" << newBlock.GetHash() << ")" << endl;
 			chain.AddBlock(newBlock);
 
 			generateCrypto();

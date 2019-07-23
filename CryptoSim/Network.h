@@ -6,7 +6,7 @@
 class Network
 {
 private:
-	vector<Node> nodes;
+	vector<Node*> nodes;
 	DataManager* manager;
 
 
