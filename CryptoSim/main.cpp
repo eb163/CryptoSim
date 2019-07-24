@@ -28,9 +28,9 @@ int main()
 	ctrl.connectModel(model);
 	ctrl.connectViewer(view);
 
-	//unitTestNode();
+	unitTestNode();
 	unitTestNetwork();
-	//unitTestDriver();
+	unitTestDriver();
 
 	//example loop of MVC framework
 	//loop runs until Controller.pause() is called
