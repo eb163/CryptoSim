@@ -84,3 +84,8 @@ void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
 	driver.connectDataManager(&manager);
 	driver.connectNetwork(&netw);
 }
+
+DataManager Model::getDataManager()
+{
+	return manager;
+}

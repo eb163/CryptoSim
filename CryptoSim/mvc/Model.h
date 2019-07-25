@@ -45,6 +45,8 @@ public:
 	void update();
 
 	void init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate); //initialize the simulation system
+
+	DataManager getDataManager();
 };
 
 #endif
