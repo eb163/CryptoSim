@@ -44,3 +44,13 @@ void DataManager::addToTotalTransactions(int delta)
 {
 	totalTransactions += delta;
 }
+
+void DataManager::setBaseSimRate(time_t rate)
+{
+	baseSimRate = rate;
+}
+
+time_t DataManager::getBaseSimRate()
+{
+	return baseSimRate;
+}

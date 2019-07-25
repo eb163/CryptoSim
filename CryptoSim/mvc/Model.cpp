@@ -67,3 +67,20 @@ void Model::update()
 		notifyViewer(n);
 	}
 }
+
+void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
+{
+	//initialize the network
+	netw.addNewNodes(nodesInNetwork);
+	netw.connectManager(&manager);
+
+	//initialize the DataManager
+	manager.setCryptoPerMine(baseCryptoRate);
+	manager.setBaseSimRate(baseTimeRate);
+
+	//initialize the driver
+	driver.setSimRate(manager.getBaseSimRate());
+	driver.setTimeSinceLastAction(0);
+	driver.connectDataManager(&manager);
+	driver.connectNetwork(&netw);
+}

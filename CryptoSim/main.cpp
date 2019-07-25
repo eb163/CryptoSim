@@ -41,7 +41,7 @@ int main()
 
 	//unitTestBlockchain();
 	//unitTestNode();
-	unitTestNetwork();
+	//unitTestNetwork();
 	//unitTestDriver();
 
 	//example loop of MVC framework

@@ -80,6 +80,14 @@ void Network::addNewNode()
 	*/
 }
 
+void Network::addNewNodes(int n)
+{
+	for (int i = 0; i < n; ++i)
+	{
+		addNewNode();
+	}
+}
+
 Node* Network::getNode(int index)
 {
 	return nodes.at(index);

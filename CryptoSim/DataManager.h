@@ -9,7 +9,7 @@ private:
 	int totalTransactions = 0;
 	//float rateOfCrypto;		//long term goal
 	//float rateOfTransactions;	//long term goal
-	time_t simRate;
+	time_t baseSimRate;
 
 public:
 	DataManager();
@@ -23,5 +23,8 @@ public:
 
 	int getTotalTransactions();
 	void addToTotalTransactions(int delta);
+
+	void setBaseSimRate(time_t rate);
+	time_t getBaseSimRate();
 };
 
