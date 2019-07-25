@@ -49,14 +49,21 @@ void unitTestBlockchain()
 	chain.AddBlock(b1);
 	chain.AddBlock(b2);
 	chain.AddBlock(b3);
+
+	printBlockchainContents(chain);
+
+	pause();
 }
 
 void unitTestNode()
 {
 	Node n1, n2, n3;
+	n1.setID("n1");
+	n2.setID("n2");
+	n3.setID("n3");
 
-//	cout << "Testing Node connections..." << endl;
-/*
+	cout << "Testing Node connections..." << endl;
+
 	cout << "Created nodes n1 and n2" << endl;
 	cout << "Is n1 connected to n2? " << n1.isConnected(&n2) << endl;
 	cout << "Is n2 connected to n1? " << n2.isConnected(&n1) << endl;
@@ -64,10 +71,9 @@ void unitTestNode()
 	cout << "Is n1 connected to n2? " << n1.isConnected(&n2) << endl;
 	cout << "Is n2 connected to n1? " << n2.isConnected(&n1) << endl;
 	pause();
-*/
+
 
 	cout << "Testing Node updating Blockchains and Notifications..." << endl;
-//	Block b1(1, "b1"), b2(2, "b2"), b3(3, "b3");
 	Transaction t1(time(0), 1.0, "B2", "B1"), t2(time(0), 2.0, "B1", "B2"), t3(time(0), 3.0, "B1", "B3");
 	Block b1(1, t1), b2(2, t2), b3(3, t3);
 	Blockchain masterchain;
@@ -75,11 +81,13 @@ void unitTestNode()
 	masterchain.AddBlock(b2);
 	masterchain.AddBlock(b3);
 
-	cout << "Node1 = " << &n1 << endl;
-	cout << "Node2 = " << &n2 << endl;
-	cout << "Node3 = " << &n3 << endl;
+	cout << n1.getID() << " = " << &n1 << endl;
+	cout << n2.getID() << " = " << &n2 << endl;
+	cout << n3.getID() << " = " << &n3 << endl;
 
+	cout << "Printing master blockchain..." << endl;
 	printBlockchainContents(masterchain);
+	pause();
 
 	n1.addConnection(&n2);
 	n3.addConnection(&n1);
@@ -88,18 +96,37 @@ void unitTestNode()
 	n2.addTransaction(t2);
 	n3.addTransaction(t3);
 
+	cout << "Printing blockchains in each Node..." << endl;
+	cout << "Node 1:" << endl;
 	printBlockchainContents(n1.getBlockchain());
+	pause();
+	cout << "Node 2:" << endl;
 	printBlockchainContents(n2.getBlockchain());
+	pause();
+	cout << "Node 3:" << endl;
 	printBlockchainContents(n3.getBlockchain());
-
 	pause();
 
+}
+
+void printNetworkNodes(Network* nw)
+{
+	for (int i = 0; i < nw->getSize(); ++i)
+	{
+		cout << nw->getNode(i)->getID() << endl;
+		cout << "Connections: " << nw->getNode(i)->getTotalConnections() << endl;
+		for (int j = 0; j < nw->getNode(i)->getTotalConnections(); ++j)
+		{
+			cout << "Connection " << j << ": " << nw->getNode(i)->getConnection(j)->getID() << " = " << nw->getNode(i)->getConnection(j) << endl;
+		}
+		cout << endl;
+	}
 }
 
 void unitTestNetwork()
 {
 	cout << "Testing Network object and methods..." << endl;
-	int nodeLimit = 4;
+	int nodeLimit = 11;
 	DataManager mngr;
 	Network* nw;
 
@@ -107,6 +134,7 @@ void unitTestNetwork()
 	{
 		cout << "Creating a Network with " << i << " Nodes." << endl;
 		nw = new Network(&mngr, i);
+		printNetworkNodes(nw);
 
 		pause();
 
@@ -144,6 +172,7 @@ void unitTestDriver()
 	{
 		driver.takeAction();
 		printDataManager(manager);
+		cout << "Press 'y' to repeat the loop, or" << endl;
 		ch = pause();
 	} while (ch == 'y' || ch == 'Y');
 }

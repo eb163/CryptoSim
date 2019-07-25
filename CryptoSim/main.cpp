@@ -9,7 +9,7 @@
 #include "mvc/Viewer.h"
 #include "mvc/ViewerInterface.h"
 #include "Node.h"
-//#include "Network.h"
+#include "Network.h"
 #include "Driver.h"
 
 
@@ -39,13 +39,14 @@ int main()
 	//example loop of MVC framework and using SFML
 	//loop runs until Controller.pause() is called or the window is closed
 
-	unitTestNode();
+	//unitTestBlockchain();
+	//unitTestNode();
 	unitTestNetwork();
-	unitTestDriver();
+	//unitTestDriver();
 
 	//example loop of MVC framework
 	//loop runs until Controller.pause() is called
-	//right now this is an unending loop
+	//or the window is closed
 	
 	do
 	{

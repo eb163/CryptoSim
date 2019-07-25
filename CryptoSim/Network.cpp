@@ -14,15 +14,17 @@ Network::Network(DataManager* manager, int nodeCount)
 	}
 
 	//debug
+	/*
 	for (int i = 0; i < nodes.size(); ++i)
 	{
 		cout << nodes.at(i)->getID() << " has " << nodes.at(i)->getTotalConnections() << " connections" << endl;
 		for (int j = 0; j < nodes.at(i)->getTotalConnections(); ++j)
 		{
 			Node* ptr = nodes.at(i)->getConnection(j);
-			cout << "Connection: " << ptr << " = " << ptr->getConnection(j)->getID() << endl;
+			cout << "Connection: " << ptr << " = " << ptr->getID() << endl;
 		}
 	}
+	*/
 }
 
 

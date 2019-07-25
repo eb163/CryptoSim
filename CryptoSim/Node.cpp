@@ -52,7 +52,8 @@ void Node::addConnection(Node * nptr)
 	//cout << "Node(" << this->getID() << ").addConnection(" << nptr->getID() <<")" << endl;
 	if (isConnected(nptr) == false)
 	{
-		cout << "Connecting " << this->getID() << " to " << nptr->getID() << endl;
+		//debug
+		//cout << "Connecting " << this->getID() << " to " << nptr->getID() << endl;
 		connections.push_back(nptr);
 		nptr->addConnection(this);
 	}
@@ -124,7 +125,7 @@ void Node::addTransaction(Transaction t)
 
 void Node::notifyNeighbors()
 {
-	cout << "Node(" << getID() <<") is notifying all Neighbor nodes..." << endl;
+	//cout << "Node(" << getID() <<") is notifying all Neighbor nodes..." << endl;
 
 	//process: for each connection
 	//call connection(i)->updateBlockChain(this.getBlockChain())
@@ -133,38 +134,54 @@ void Node::notifyNeighbors()
 	{
 		for (int i = 0; i < connections.size(); ++i)
 		{
-			cout << "Next node: " << connections.at(i) << endl;
+			//cout << "Next node: " << connections.at(i)->getID() << endl;
 			connections.at(i)->updateBlockChain(this);
 		}
 	}
 }
 
+bool compareBlocks(Block& b1, Block& b2)
+{
+	//blocks are equivalent if
+
+	//crypto amount is equal
+	float amt1 = b1.GetData().getAmount();
+	float amt2 = b2.GetData().getAmount();
+
+	//sender id is equal
+	string s1 = b1.GetData().getSenderID();
+	string s2 = b2.GetData().getSenderID();
+
+	//receiver id is equal
+	string r1 = b1.GetData().getReceiverID();
+	string r2 = b2.GetData().getReceiverID();
+
+	return ((amt1 == amt2) && (s1 == s2) && (r1 == r2));
+}
+
 void Node::updateBlockChain(Node* nptr)
 {
-	cout << "Node("<<getID()<<").updateBlockChain()..." << endl;
-	
-	//method: find the difference in size between this blockchain and newBlockchain
-	//copy any blocks from the newBC located past the index difference
+	//cout << "Node("<<getID()<<").updateBlockChain()..." << endl;
 
-	int diff = (nptr->getChainSize()) - (this->getChainSize());
-	if (diff <= 0) //if nptr's chain is smaller than or equal to this node's chain, this node doesn't need to update
-		return;
-	else
+	//method: this Node copies latest block from nptr's chain and pushes it to this Node's chain
+
+	Block newBlock = nptr->getBlockchain().GetLastBlock();
+
+	//block comparison to avoid duplicates
+	//if two blocks have the same amt, sender id, and receiver id, the blocks are basically identical
+	bool equal = false;
+	for (int i = 1; i < chain.getSize(); ++i)
 	{
-		cout << "Node(" << getID() << ").blockChain.size() = " << getChainSize() << endl;
-		cout << "Node(" << nptr->getID() << ").blockChain.size() = " << nptr->getChainSize() << endl;
-		cout << "diff = " << diff << endl;
+		equal = compareBlocks(newBlock, chain.getBlock(i));
+		if (equal) { i = chain.getSize() + 1; } //end loop early if a match is found
+	}
 
-		for (int i = this->getChainSize(); i < nptr->getChainSize(); ++i)
-		{
-			cout << "i = " << i << endl;
-			Block newBlock = nptr->getBlockchain().getBlock(i);
-			cout << "Node(" << getID() << ") loaded Block(" << newBlock.GetHash() << ")" << endl;
-			chain.AddBlock(newBlock);
+	if (equal == false)
+	{
+		chain.AddBlock(newBlock);
+		generateCrypto();
 
-			generateCrypto();
-		}
-		notifyNeighbors(); //update neighbor nodes
+		notifyNeighbors();
 	}
 
 }
@@ -176,7 +193,7 @@ bool Node::generateCrypto()
 	{
 		balance += manager->getCryptoPerMine();
 		manager->addToTotalCrypto(manager->getCryptoPerMine());
-		cout << "Node(" << this << ") earned " << manager->getCryptoPerMine() << " crypto for modifying its Blockchain!" << endl;
+		cout << "Node(" << getID() << ") earned " << manager->getCryptoPerMine() << " crypto for modifying its Blockchain!" << endl;
 		result = true;
 	}
 	return result;

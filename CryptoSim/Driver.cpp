@@ -1,7 +1,5 @@
 #include "Driver.h"
 
-
-
 Driver::Driver()
 {
 	srand(time(0)); //seeds rng
@@ -53,9 +51,10 @@ void Driver::takeAction()
 
 	switch (action)
 	{
-	case DO_NOTHING: cout << "Driver did nothing this cycle. " << endl;  break;
-
 	case ADD_TRANSACTION: addTransaction(); break;
+	case DO_NOTHING: cout << "Driver did nothing this cycle. " << endl;  break;
+	default: cout << "Driver did nothing this cycle. " << endl; break;
+
 	}
 }
 
@@ -81,8 +80,7 @@ void Driver::addTransaction()
 	t.makeConstant(); //disable editing
 
 	//add the Transactions to receiver Node
-	//the receivr Node will update the rest of the network
-	//nw.getNode(n1)->addTransaction(t); //sender
+	//the receiver Node will update the rest of the network
 	nw->getNode(n2)->addTransaction(t); //receiver
 
 	manager->addToTotalTransactions(1); //increment transaction counter
