@@ -1,5 +1,6 @@
 #include "Model.h"
 #include "Viewer.h"
+#include "../tests.h"
 
 Model::Model()
 {
@@ -66,4 +67,35 @@ void Model::update()
 		noticeQueue.pop();
 		notifyViewer(n);
 	}
+}
+
+void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
+{
+	//initialize the network
+	netw.connectManager(&manager);
+	netw.addNewNodes(nodesInNetwork);
+	//printNetworkNodes(&netw);
+	
+
+	//initialize the DataManager
+	manager.setCryptoPerMine(baseCryptoRate);
+	manager.setBaseSimRate(baseTimeRate);
+
+	//initialize the driver
+	driver.setSimRate(manager.getBaseSimRate());
+	driver.setTimeSinceLastAction(0);
+	driver.connectDataManager(&manager);
+	driver.connectNetwork(&netw);
+}
+
+DataManager Model::getDataManager()
+{
+	return manager;
+}
+
+void Model::simUpdate(time_t deltaT)
+{
+	driver.modifyTimeSinceLastAction(deltaT);
+	driver.pollForAction(); //driver checks time and decides whether or not to act on sim system
+	
 }

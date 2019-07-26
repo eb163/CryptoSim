@@ -6,6 +6,10 @@
 #include "debug.h"
 //#include "Viewer.h"
 
+#include "../Driver.h"
+#include "../Network.h"
+#include "../DataManager.h"
+
 class Viewer; //avoids recursive includes
 
 using std::queue;
@@ -18,6 +22,10 @@ protected:
 	Viewer *vptr = nullptr;
 	queue<Event*> eventsQueue; //for events from controller
 	queue<Notice*> noticeQueue; //for notices to send to viewer
+
+	Driver driver;
+	Network netw;
+	DataManager manager;
 
 public:
 	Model();
@@ -35,6 +43,12 @@ public:
 	void updateModel(Event* e);
 	void takeEvent(Event* e);
 	void update();
+
+	void init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate); //initialize the simulation system
+
+	DataManager getDataManager();
+
+	void simUpdate(time_t deltaT);
 };
 
 #endif
