@@ -1,5 +1,6 @@
 #include "Model.h"
 #include "Viewer.h"
+#include "../tests.h"
 
 Model::Model()
 {
@@ -71,8 +72,10 @@ void Model::update()
 void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
 {
 	//initialize the network
-	netw.addNewNodes(nodesInNetwork);
 	netw.connectManager(&manager);
+	netw.addNewNodes(nodesInNetwork);
+	//printNetworkNodes(&netw);
+	
 
 	//initialize the DataManager
 	manager.setCryptoPerMine(baseCryptoRate);
@@ -88,4 +91,11 @@ void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
 DataManager Model::getDataManager()
 {
 	return manager;
+}
+
+void Model::simUpdate(time_t deltaT)
+{
+	driver.modifyTimeSinceLastAction(deltaT);
+	driver.pollForAction(); //driver checks time and decides whether or not to act on sim system
+	
 }

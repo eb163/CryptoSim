@@ -32,6 +32,8 @@ public:
 	void modifyTimeSinceLastAction(time_t deltaTime);
 	time_t getTimeSinceLastAction();
 
+	void pollForAction();
+
 	void takeAction();
 
 	//actions which the Driver can perform on the nodes of the network

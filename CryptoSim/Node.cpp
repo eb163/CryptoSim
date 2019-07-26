@@ -196,5 +196,9 @@ bool Node::generateCrypto()
 		cout << "Node(" << getID() << ") earned " << manager->getCryptoPerMine() << " crypto for modifying its Blockchain!" << endl;
 		result = true;
 	}
+	else
+	{
+		cout << "ERROR: Node ptr to manager is nullptr!" << endl;
+	}
 	return result;
 }

@@ -45,6 +45,21 @@ time_t Driver::getTimeSinceLastAction()
 	return timeSinceLastAction;
 }
 
+void Driver::pollForAction()
+{
+	//debug
+	cout << "Driver.pollForAction()" << endl;
+
+	if (timeSinceLastAction >= simRate)
+	{
+		//debug
+		cout << "Driver is taking an action!" << endl;
+
+		timeSinceLastAction = timeSinceLastAction - simRate;
+		takeAction();
+	}
+}
+
 void Driver::takeAction()
 {
 	int action = rand() % numberOfActions + 1;

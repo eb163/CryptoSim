@@ -47,6 +47,13 @@ Network::~Network()
 void Network::connectManager(DataManager * m)
 {
 	manager = m;
+	if (nodes.size() > 0)
+	{
+		for (int i = 0; i < nodes.size(); ++i)
+		{
+			nodes[i]->connectDataManager(m);
+		}
+	}
 }
 
 void Network::addNewNode()

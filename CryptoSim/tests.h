@@ -13,6 +13,8 @@ void printBlockchainContents(Blockchain &bc);
 
 void printDataManager(DataManager& m);
 
+void printNetworkNodes(Network* nw);
+
 void unitTestBlockchain();
 
 void unitTestNode();
