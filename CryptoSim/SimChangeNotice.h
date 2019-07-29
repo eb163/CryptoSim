@@ -9,7 +9,6 @@ class SimChangeNotice :
 	public Notice
 {
 private:
-	string message;
 	float crypto;
 	int transaction;
 	time_t dt;
@@ -19,9 +18,6 @@ protected:
 public:
 	SimChangeNotice();
 	~SimChangeNotice();
-
-	void setMessage(string str);
-	string getMessage();
 
 	void setCryptoChange(float amt);
 	float getCryptoChange();

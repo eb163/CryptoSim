@@ -12,16 +12,6 @@ SimChangeNotice::~SimChangeNotice()
 {
 }
 
-void SimChangeNotice::setMessage(string str)
-{
-	message = str;
-}
-
-string SimChangeNotice::getMessage()
-{
-	return message;
-}
-
 void SimChangeNotice::setCryptoChange(float amt)
 {
 	crypto = amt;

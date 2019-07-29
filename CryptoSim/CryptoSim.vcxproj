@@ -133,6 +133,7 @@
     <ClCompile Include="Network.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="SimChangeNotice.cpp" />
+    <ClCompile Include="SimPauseNotice.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
@@ -155,6 +156,7 @@
     <ClInclude Include="Network.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="SimChangeNotice.h" />
+    <ClInclude Include="SimPauseNotice.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
