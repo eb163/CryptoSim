@@ -26,7 +26,7 @@
 
 int main()
 {
-	sf::RenderWindow win(sf::VideoMode(800, 600), "This is an example window");
+	//sf::RenderWindow win(sf::VideoMode(800, 600), "This is an example window");
 
 	Controller ctrl;
 	Viewer view;
@@ -64,13 +64,14 @@ int main()
 		curTimestamp = time(0);
 		deltaTime = curTimestamp - prevTimestamp;
 
-		//view.loop();	//View can check for input
+		view.loop();	//View can check for input
 		//ctrl.loop();	//Ctrl activates an update cycle, checks for inputs from view, sends any events to model, and prompts model and view to update
-		model.simUpdate(deltaTime); //force the model to take a sim update cycle
-		printDataManager(model.getDataManager()); //print data to console to confirm it's working
+		//model.simUpdate(deltaTime); //force the model to take a sim update cycle
+		//printDataManager(model.getDataManager()); //print data to console to confirm it's working
 	
 		//code for checking window sf::events
 		sf::Event e;
+		/*
 		while (win.pollEvent(e))
 		{
 			if (e.type == sf::Event::Closed)
@@ -78,14 +79,15 @@ int main()
 				win.close(); //closes window 
 			}
 		}
+		*/
 
 		//code for updating the window display
-		win.clear();
+		//win.clear();
 
 		//draw objects to window with win.draw(object)
 
-		win.display(); //when finished drawing objects to window, call win.display()
+		//win.display(); //when finished drawing objects to window, call win.display()
 
-	} while (ctrl.isRunning() == true && win.isOpen());
+	} while (ctrl.isRunning() == true /*&& win.isOpen()*/);
 	return 0;
 }
