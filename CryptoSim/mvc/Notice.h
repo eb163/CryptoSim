@@ -1,5 +1,5 @@
 #pragma once
-enum NoticeType {CLOSE, MOVED_MESSAGE, RECOLOR_MESSAGE, CHANGED_TEXT, CLOCK_UPDATE};
+enum NoticeType {CLOSE, SIM_CHANGE};
 
 class Notice
 {

@@ -132,6 +132,7 @@
     <ClCompile Include="mvc\Viewer.cpp" />
     <ClCompile Include="Network.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="SimChangeNotice.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="mvc\ViewerInterface.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="SimChangeNotice.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
