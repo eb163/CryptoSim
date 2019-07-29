@@ -58,6 +58,18 @@ protected:
 	sf::Color pausedColor = sf::Color::Red;
 	sf::Color goColor = sf::Color::Green;
 
+	int slowButtonSize;
+	int slowButtonRotation;
+	sf::Vector2f slowButtonPos;
+	//color?
+	sf::CircleShape slowButton;
+
+	int speedButtonSize;
+	int speedButtonRotation;
+	sf::Vector2f speedButtonPos;
+	//color?
+	sf::CircleShape speedButton;
+
 public:
 	Viewer();
 	~Viewer();

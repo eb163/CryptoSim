@@ -5,7 +5,7 @@ Viewer::Viewer()
 	mptr = nullptr;
 	cptr = nullptr;
 
-	videomodeptr = new sf::VideoMode(800, 600);
+	videomodeptr = new sf::VideoMode(1200, 900);
 	windowptr = new sf::RenderWindow(*videomodeptr, windowTitle);
 
 	font.loadFromFile(fontPath);
@@ -41,6 +41,26 @@ Viewer::Viewer()
 	pauseButton.setPosition(pauseButtonPos);
 	pauseButton.setFillColor(goColor);
 	pauseButton.setOutlineColor(goColor);
+
+	slowButton.setPointCount(3);
+	slowButtonRotation = 270;
+	slowButtonSize = 50;
+	slowButton.setOrigin(sf::Vector2f(slowButtonSize, slowButtonSize));
+	slowButtonPos.x = 300;
+	slowButtonPos.y = 300;
+	slowButton.setRadius(slowButtonSize);
+	slowButton.setPosition(slowButtonPos);
+	slowButton.rotate(slowButtonRotation);
+
+	speedButton.setPointCount(3);
+	speedButtonRotation = 90;
+	speedButtonSize = 50;
+	speedButton.setOrigin(sf::Vector2f(speedButtonSize, speedButtonSize));
+	speedButtonPos.x = 300;
+	speedButtonPos.y = 300;
+	speedButton.setRadius(speedButtonSize);
+	speedButton.setPosition(speedButtonPos);
+	speedButton.rotate(speedButtonRotation);
 
 	repositionUI();
 }
@@ -110,8 +130,15 @@ void Viewer::repositionUI()
 	pauseButton.setPosition(pauseButtonPos);
 
 	//slow down button
+	slowButtonPos.x = pauseButtonPos.x - pauseButtonSize.x / 2 - slowButtonSize / 2 - offsetX;
+	slowButtonPos.y = pauseButtonPos.y;
+	slowButton.setPosition(slowButtonPos);
 
 	//speed up button
+	speedButtonPos.x = pauseButtonPos.x + pauseButtonSize.x / 2 + speedButtonSize / 2 + offsetX;
+	speedButtonPos.y = pauseButtonPos.y;
+	speedButton.setPosition(speedButtonPos);
+	
 
 	//message log
 }
@@ -165,7 +192,6 @@ void Viewer::updateText()
 	cryptoText.setString(newcryptostr);
 	transacText.setString(newtransacstr);
 	clockText.setString(newclockstr);
-
 }
 
 void Viewer::connectModel(Model& m)
@@ -226,6 +252,10 @@ void Viewer::updateDisplay()
 	windowptr->draw(clockText);
 
 	windowptr->draw(pauseButton);
+
+	windowptr->draw(slowButton);
+
+	windowptr->draw(speedButton);
 
 	windowptr->display();
 }
