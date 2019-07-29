@@ -10,6 +10,7 @@ private:
 	//float rateOfCrypto;		//long term goal
 	//float rateOfTransactions;	//long term goal
 	time_t baseSimRate;
+	time_t timePassed;
 
 public:
 	DataManager();
@@ -26,5 +27,8 @@ public:
 
 	void setBaseSimRate(time_t rate);
 	time_t getBaseSimRate();
+
+	void addToTimePassed(time_t dT);
+	time_t getTimePassed();
 };
 

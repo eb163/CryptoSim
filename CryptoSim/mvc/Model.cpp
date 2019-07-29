@@ -95,6 +95,7 @@ DataManager Model::getDataManager()
 
 void Model::simUpdate(time_t deltaT)
 {
+	manager.addToTimePassed(deltaT);
 	driver.modifyTimeSinceLastAction(deltaT);
 	driver.pollForAction(); //driver checks time and decides whether or not to act on sim system
 	

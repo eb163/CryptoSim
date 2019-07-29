@@ -34,6 +34,9 @@ int main()
 
 	ctrl.connectModel(model);
 	ctrl.connectViewer(view);
+	view.connectController(ctrl);
+	view.connectModel(model);
+	model.connectViewer(view);
 
 	int totalNodes = 10;
 	float baseCryptoRate = 5.00;
@@ -65,9 +68,9 @@ int main()
 		deltaTime = curTimestamp - prevTimestamp;
 
 		view.loop();	//View can check for input
-		//ctrl.loop();	//Ctrl activates an update cycle, checks for inputs from view, sends any events to model, and prompts model and view to update
-		//model.simUpdate(deltaTime); //force the model to take a sim update cycle
-		//printDataManager(model.getDataManager()); //print data to console to confirm it's working
+		ctrl.loop();	//Ctrl activates an update cycle, checks for inputs from view, sends any events to model, and prompts model and view to update
+		model.simUpdate(deltaTime); //force the model to take a sim update cycle
+		printDataManager(model.getDataManager()); //print data to console to confirm it's working
 	
 		//code for checking window sf::events
 		sf::Event e;

@@ -7,6 +7,7 @@ DataManager::DataManager()
 	totalCrypto = 0;
 	totalTransactions = 0;
 	cryptoPerMine = 0;
+	timePassed = 0;
 }
 
 
@@ -53,4 +54,14 @@ void DataManager::setBaseSimRate(time_t rate)
 time_t DataManager::getBaseSimRate()
 {
 	return baseSimRate;
+}
+
+void DataManager::addToTimePassed(time_t dT)
+{
+	timePassed += dT;
+}
+
+time_t DataManager::getTimePassed()
+{
+	return timePassed;
 }

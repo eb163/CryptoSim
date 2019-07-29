@@ -18,21 +18,31 @@ Viewer::Viewer()
 	cryptoText.setFont(font);
 	//cryptoText.setCharacterSize();
 
-	transacTextPos.x = 200; //arbitrary
+	transacTextPos.x = 100; //arbitrary
 	transacTextPos.y = 200; //arbitrary
 
 	transacText.setPosition(transacTextPos);
 	transacText.setString(transacStr);
 	transacText.setFont(font);
 
+	clockTextPos.x = 100; //arbitrary
+	clockTextPos.y = 300; //arbitrary
+
+	clockText.setPosition(clockTextPos);
+	clockText.setString(clockStr);
+	clockText.setFont(font);
+
 	pauseButtonSize.x = 100; //arbitrary
 	pauseButtonSize.y = 100; //arbitrary
 	pauseButtonPos.x = 400;	//arbitrary
 	pauseButtonPos.y = 400; //arbitrary
+	pauseButton.setOrigin(sf::Vector2f(pauseButtonSize.x / 2, pauseButtonSize.y / 2));
 	pauseButton.setSize(pauseButtonSize);
 	pauseButton.setPosition(pauseButtonPos);
 	pauseButton.setFillColor(goColor);
 	pauseButton.setOutlineColor(goColor);
+
+	repositionUI();
 }
 
 
@@ -57,6 +67,53 @@ void Viewer::resizeWindow(int width, int height)
 	videomodeptr->width = width;
 	videomodeptr->height = height;
 	windowptr->create(*videomodeptr, windowTitle);
+	repositionUI();
+}
+
+void Viewer::repositionUI()
+{
+	/*
+	-crypto / transaction positions : top left corner
+		- clock position : under crypto / transaction displays
+		- pause button : the bottom middle of the left half of the window
+		- speed buttons : slow to the left of pause, speed up to the right of pause
+		- message log : right half of window
+	*/
+	int textLength = 0;
+	int textHeight = 0;
+	int offsetX = 10, offsetY = 5;
+	
+	//crypto position
+	textLength = cryptoText.getCharacterSize() * cryptoText.getString().getSize();
+	textHeight = cryptoText.getCharacterSize();
+	cryptoTextPos.x = 0 + offsetX;
+	cryptoTextPos.y = 0 + textHeight + offsetY;
+	cryptoText.setPosition(cryptoTextPos);
+
+	//transaction position
+	textLength = transacText.getCharacterSize() * transacText.getString().getSize();
+	textHeight = transacText.getCharacterSize();
+	transacTextPos.x = 0 + offsetX;
+	transacTextPos.y = cryptoTextPos.y + textHeight + offsetY;
+	transacText.setPosition(transacTextPos);
+
+	//clock position
+	textLength = clockText.getCharacterSize() * clockText.getString().getSize();
+	textHeight = clockText.getCharacterSize();
+	clockTextPos.x = 0 + offsetX;
+	clockTextPos.y = transacTextPos.y + textHeight + offsetY;
+	clockText.setPosition(clockTextPos);
+
+	//pause button
+	pauseButtonPos.y = videomodeptr->height - pauseButtonSize.y / 2 - offsetY * 5;
+	pauseButtonPos.x = videomodeptr->width / 4;
+	pauseButton.setPosition(pauseButtonPos);
+
+	//slow down button
+
+	//speed up button
+
+	//message log
 }
 
 bool Viewer::pollWindow()
@@ -91,6 +148,24 @@ bool Viewer::pollWindow()
 	}
 
 	return result;
+}
+
+void Viewer::updateText()
+{
+	cout << "Viewer.updateText()" << endl;
+	cout << "mptr = " << mptr << endl;
+	float crypto = mptr->getDataManager().getTotalCrypto();
+	int transacs = mptr->getDataManager().getTotalTransactions();
+	time_t currTime = mptr->getDataManager().getTimePassed();
+
+	string newcryptostr = cryptoStr + std::to_string(crypto);
+	string newtransacstr = transacStr + std::to_string(transacs);
+	string newclockstr = clockStr + std::to_string(currTime);
+
+	cryptoText.setString(newcryptostr);
+	transacText.setString(newtransacstr);
+	clockText.setString(newclockstr);
+
 }
 
 void Viewer::connectModel(Model& m)
@@ -142,9 +217,13 @@ void Viewer::updateDisplay()
 
 	//redraw all things here
 
+	updateText();
+
 	windowptr->draw(cryptoText);
 
 	windowptr->draw(transacText);
+
+	windowptr->draw(clockText);
 
 	windowptr->draw(pauseButton);
 

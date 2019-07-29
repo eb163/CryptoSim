@@ -6,6 +6,7 @@
 #include "Model.h"
 #include <queue>
 #include <exception>
+#include <ctime>
 
 #include "SFML/Main.hpp"
 #include "SFML/Window.hpp"
@@ -29,6 +30,9 @@ protected:
 	queue<Input*> inputQueue;
 	queue<Notice*> noticeQueue;
 
+	//-----------------------------------------
+	//SFML ATTRIBUTES
+	//----------------------------------------
 	string windowTitle = "CryptoSim: A Simulation of a Cryptocurrency network powered by blockchain!";
 	sf::RenderWindow* windowptr = nullptr;
 	sf::VideoMode* videomodeptr = nullptr;
@@ -44,6 +48,10 @@ protected:
 	sf::Text transacText;
 	sf::Vector2f transacTextPos;
 
+	string clockStr = "Time: ";
+	sf::Text clockText;
+	sf::Vector2f clockTextPos;
+
 	sf::Vector2f pauseButtonSize;
 	sf::Vector2f pauseButtonPos;
 	sf::RectangleShape pauseButton;
@@ -56,7 +64,11 @@ public:
 
 	void resizeWindow(int width, int height);
 
+	void repositionUI();
+
 	bool pollWindow();
+
+	void updateText(); //get data from data manager and add to text
 
 	void connectModel(Model& m);
 
