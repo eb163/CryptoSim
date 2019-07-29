@@ -121,6 +121,7 @@
     <ClCompile Include="blockchain\Block.cpp" />
     <ClCompile Include="blockchain\Blockchain.cpp" />
     <ClCompile Include="blockchain\sha256.cpp" />
+    <ClCompile Include="CloseNotice.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="main.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="blockchain\Block.h" />
     <ClInclude Include="blockchain\Blockchain.h" />
     <ClInclude Include="blockchain\sha256.h" />
+    <ClInclude Include="CloseNotice.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="mvc\Controller.h" />
