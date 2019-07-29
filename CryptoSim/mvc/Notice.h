@@ -3,7 +3,7 @@
 
 using std::string;
 
-enum NoticeType {CLOSE, SIM_CHANGE};
+enum NoticeType {CLOSE, SIM_CHANGE, SIM_PAUSE};
 
 class Notice
 {
