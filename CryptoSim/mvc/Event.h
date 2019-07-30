@@ -1,6 +1,6 @@
 #pragma once
 
-enum EventType {EVENT_CLOSE, EVENT_PAUSE};
+enum EventType {EVENT_CLOSE, EVENT_PAUSE, EVENT_SPEEDCHANGE};
 
 class Event
 {
