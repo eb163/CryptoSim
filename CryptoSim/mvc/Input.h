@@ -1,6 +1,6 @@
 #pragma once
 
-enum InputType {INPUT_CLOSE, INPUT_LEFTMOUSECLICK};
+enum InputType {INPUT_CLOSE, INPUT_SPACEBAR};
 
 class Input
 {

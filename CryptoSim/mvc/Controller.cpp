@@ -2,25 +2,29 @@
 
 Controller::Controller()
 {
+	/*
 	mptr = new Model();
 
 	vptr = new Viewer();
 
-	mptr->connectViewer(*(vptr));
+	mptr->connectViewer(vptr);
 
-	vptr->connectModel(*(mptr));
-	vptr->connectController(*(this));
+	vptr->connectModel(mptr);
+	vptr->connectController(this);
+	*/
+	mptr = nullptr;
+	vptr = nullptr;
 }
 
-Controller::Controller(Model& m, Viewer& v)
+Controller::Controller(Model* m, Viewer* v)
 {
-	mptr = &m;
-	vptr = &v;
+	mptr = m;
+	vptr = v;
 
-	mptr->connectViewer(*(vptr));
+	mptr->connectViewer(vptr);
 	
-	vptr->connectModel(*(mptr));
-	vptr->connectController(*(this));
+	vptr->connectModel(mptr);
+	vptr->connectController(this);
 }
 
 Controller::~Controller()
@@ -28,9 +32,9 @@ Controller::~Controller()
 
 }
 
-void Controller::connectModel(Model & m)
+void Controller::connectModel(Model* m)
 {
-	mptr = &m;
+	mptr = m;
 }
 
 Model* Controller::getModel()
@@ -38,9 +42,9 @@ Model* Controller::getModel()
 	return mptr;
 }
 
-void Controller::connectViewer(Viewer & v)
+void Controller::connectViewer(Viewer* v)
 {
-	vptr = &v;
+	vptr = v;
 }
 
 Viewer * Controller::getViewer()

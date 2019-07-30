@@ -32,7 +32,7 @@ public:
 	~Model();
 
 	Viewer* getViewer();
-	void connectViewer(Viewer& v);
+	void connectViewer(Viewer* v);
 
 	//model must:
 	//take commands or processed input from controller

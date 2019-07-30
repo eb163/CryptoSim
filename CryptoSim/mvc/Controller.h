@@ -22,11 +22,11 @@ protected:
 
 public:
 	Controller();
-	Controller(Model& m, Viewer& v);
+	Controller(Model* m, Viewer* v);
 	~Controller();
 
-	void connectModel(Model& m);
-	void connectViewer(Viewer& v);
+	void connectModel(Model* m);
+	void connectViewer(Viewer* v);
 	Model* getModel();
 	Viewer* getViewer();
 

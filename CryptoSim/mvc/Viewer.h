@@ -14,6 +14,10 @@
 #include "SFML/Network.hpp"
 #include "SFML/System.hpp"
 
+#include "../CloseNotice.h"
+#include "../SimChangeNotice.h"
+#include "../SimPauseNotice.h"
+
 #include "debug.h"
 
 class Controller; //avoids recursive includes
@@ -82,12 +86,14 @@ public:
 
 	void updateText(); //get data from data manager and add to text
 
-	void connectModel(Model& m);
+	void connectModel(Model* m);
 
-	void connectController(Controller& c);
+	void connectController(Controller* c);
 
 	//void takeEvent(Event* e); //adds an event to the queue to be processed by the Viewer
 	void takeNotice(Notice* n); //adds a notice to the queue
+
+	bool isOpen();
 
 	//viewer must:
 	//update graphics when model sends a notification

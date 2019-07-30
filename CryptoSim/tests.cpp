@@ -1,4 +1,3 @@
-
 #include "tests.h"
 char pause()
 {
@@ -180,4 +179,38 @@ void unitTestDriver()
 void unitTestDataManager()
 {
 
+}
+
+void unitTestViewer()
+{
+	Controller c;
+	Model m;
+	Viewer v;
+	m.init(0, 0, -1);
+	c.connectModel(&m);
+	c.connectViewer(&v);
+	m.connectViewer(&v);
+	v.connectModel(&m);
+	v.connectController(&c);
+
+	while (c.isRunning() && v.isOpen())
+	{
+		v.updateDisplay();
+		//v.loop();
+		SimPauseNotice* pauseN = new SimPauseNotice;
+		pauseN->pause();
+		cout << "Testing SimPauseNotice.isPaused..." << endl;
+		v.processNotice(pauseN);
+		bool wait = false;
+		while (wait == false) { wait = v.pollWindow(); };
+
+		v.updateDisplay();
+
+		SimPauseNotice* runN = new SimPauseNotice;
+		runN->run();
+		cout << "Testing SimPauseNotice.isRunning..." << endl;
+		v.processNotice(runN);
+		wait = false;
+		while (wait == false) { wait = v.pollWindow(); };
+	}
 }

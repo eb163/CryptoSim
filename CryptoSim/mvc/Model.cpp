@@ -18,9 +18,9 @@ Viewer * Model::getViewer()
 	return vptr;
 }
 
-void Model::connectViewer(Viewer& v)
+void Model::connectViewer(Viewer* v)
 {
-	vptr = &v;
+	vptr = v;
 }
 
 void Model::notifyViewer(Notice* n)

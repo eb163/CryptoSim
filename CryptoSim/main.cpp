@@ -26,17 +26,32 @@
 
 int main()
 {
-	//sf::RenderWindow win(sf::VideoMode(800, 600), "This is an example window");
 
+	////////////////////////////////////////////////////
+	//TESTS
+	///////////////////////////////////////////////////
+
+	//unitTestBlockchain();
+	//unitTestNode();
+	//unitTestNetwork();
+	//unitTestDriver();
+
+	unitTestViewer();
+
+
+	/////////////////////////////////////////////////
+	//MAIN
+	/////////////////////////////////////////////////
+	/*
 	Controller ctrl;
 	Viewer view;
 	Model model;
 
-	ctrl.connectModel(model);
-	ctrl.connectViewer(view);
-	view.connectController(ctrl);
-	view.connectModel(model);
-	model.connectViewer(view);
+	ctrl.connectModel(&model);
+	ctrl.connectViewer(&view);
+	view.connectController(&ctrl);
+	view.connectModel(&model);
+	model.connectViewer(&view);
 
 	int totalNodes = 10;
 	float baseCryptoRate = 5.00;
@@ -48,19 +63,8 @@ int main()
 	time_t prevTimestamp = time(0);
 	time_t curTimestamp;
 	time_t deltaTime = 0;
-	
-	//example loop of MVC framework and using SFML
-	//loop runs until Controller.pause() is called or the window is closed
 
-	//unitTestBlockchain();
-	//unitTestNode();
-	//unitTestNetwork();
-	//unitTestDriver();
-
-	//example loop of MVC framework
-	//loop runs until Controller.pause() is called
-	//or the window is closed
-	
+	//main loop
 	do
 	{
 		//update clock
@@ -71,26 +75,8 @@ int main()
 		ctrl.loop();	//Ctrl activates an update cycle, checks for inputs from view, sends any events to model, and prompts model and view to update
 		model.simUpdate(deltaTime); //force the model to take a sim update cycle
 		printDataManager(model.getDataManager()); //print data to console to confirm it's working
-	
-		//code for checking window sf::events
-		sf::Event e;
-		/*
-		while (win.pollEvent(e))
-		{
-			if (e.type == sf::Event::Closed)
-			{
-				win.close(); //closes window 
-			}
-		}
-		*/
 
-		//code for updating the window display
-		//win.clear();
-
-		//draw objects to window with win.draw(object)
-
-		//win.display(); //when finished drawing objects to window, call win.display()
-
-	} while (ctrl.isRunning() == true /*&& win.isOpen()*/);
+	} while (ctrl.isRunning() == true && view.isOpen());
 	return 0;
+	*/
 }

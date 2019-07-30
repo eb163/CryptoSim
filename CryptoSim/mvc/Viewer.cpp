@@ -5,8 +5,12 @@ Viewer::Viewer()
 	mptr = nullptr;
 	cptr = nullptr;
 
+	//windowTitle = to_string(this);
+
 	videomodeptr = new sf::VideoMode(1200, 900);
 	windowptr = new sf::RenderWindow(*videomodeptr, windowTitle);
+
+	cout << "Viewer(" << this << ") created a new Window(" << windowptr << ")" << endl;
 
 	font.loadFromFile(fontPath);
 
@@ -146,7 +150,8 @@ void Viewer::repositionUI()
 bool Viewer::pollWindow()
 {
 	sf::Event e;
-	bool result = windowptr->pollEvent(e);
+	bool result = false;
+	windowptr->pollEvent(e);
 	//possible events:
 	//1. closed
 	if (e.type == sf::Event::Closed)
@@ -154,6 +159,7 @@ bool Viewer::pollWindow()
 		cout << "Window got an sf::Event: Closed" << endl;
 		//create an input for closed event
 		//push the input to the queue
+		result = true;
 	}
 	if (e.type == sf::Event::KeyReleased)
 	{
@@ -162,6 +168,8 @@ bool Viewer::pollWindow()
 		//2. space bar key is pressed
 
 		//3. escape key is pressed (same as Closed event)
+
+		result = true;
 	}
 
 	if (e.type == sf::Event::MouseButtonReleased)
@@ -172,6 +180,8 @@ bool Viewer::pollWindow()
 		//4a. the click is on the speed up button
 		//4b. the click is on the slow down button
 		//4c. the click is on the pause / go button
+
+		result = true;
 	}
 
 	return result;
@@ -194,14 +204,14 @@ void Viewer::updateText()
 	clockText.setString(newclockstr);
 }
 
-void Viewer::connectModel(Model& m)
+void Viewer::connectModel(Model* m)
 {
-	mptr = &m;
+	mptr = m;
 }
 
-void Viewer::connectController(Controller& c)
+void Viewer::connectController(Controller* c)
 {
-	cptr = &c;
+	cptr = c;
 }
 
 void Viewer::takeNotice(Notice* n)
@@ -210,12 +220,51 @@ void Viewer::takeNotice(Notice* n)
 	noticeQueue.push(n);
 }
 
+bool Viewer::isOpen()
+{
+	return windowptr->isOpen();
+}
+
 void Viewer::processNotice(Notice* n)
 {
 	cout << "Viewer.processNotice()" << endl;
 	//do stuff here
 
-	this->updateDisplay(n); //to update the graphical display
+	if (n->getType() == NoticeType::SIM_CHANGE)
+	{
+		cout << n->getMessage() << endl;
+		//push message to messagelog
+		//update messagelog display
+
+	}
+
+	if (n->getType() == NoticeType::SIM_PAUSE)
+	{
+		cout << n->getMessage() << endl;
+		//push message to messagelog
+		//update messagelog display
+		bool isPaused = static_cast<SimPauseNotice*>(n)->isPaused();
+		if (isPaused)
+		{
+			pauseButton.setFillColor(pausedColor);
+		}
+		else
+		{
+			pauseButton.setFillColor(goColor);
+		}
+	}
+
+	if (n->getType() == NoticeType::CLOSE)
+	{
+		windowptr->close();
+		if (windowptr != nullptr)
+		{
+			delete windowptr;
+			windowptr = nullptr;
+		}
+	}
+
+	//this->updateDisplay(n); //to update the graphical display
 
 	if (n!= nullptr)
 	{
@@ -281,7 +330,9 @@ void Viewer::loop()
 	//method of things to be done repeatedly
 	//for example:
 	this->pollWindow(); //check the window for any sf::Events
-	this->update(); //to check for notices in queue, parse them, and modify display
+	this->update(); //to check for notices in queue, parse them
+	this->updateDisplay(); //force display to redraw
+	//^^^ TODO: implement specialized updateDisplay for faster redrawing of the display
 }
 
 void Viewer::update()
@@ -295,12 +346,12 @@ void Viewer::update()
 		noticeQueue.pop();
 		if(n != nullptr)
 		{
-			updateDisplay(n);
+			processNotice(n);
 		}
 		else
 		{
-			updateDisplay();
+			//updateDisplay();
 		}
 	}
-	updateDisplay(); //temporary, want to display changes while no notices exist
+	//updateDisplay(); //temporary, want to display changes while no notices exist
 }
