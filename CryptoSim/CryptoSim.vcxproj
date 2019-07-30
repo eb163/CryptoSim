@@ -124,6 +124,7 @@
     <ClCompile Include="CloseNotice.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="InputChangeSpeed.cpp" />
     <ClCompile Include="InputClose.cpp" />
     <ClCompile Include="InputSpacebar.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="CloseNotice.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="Driver.h" />
+    <ClInclude Include="InputChangeSpeed.h" />
     <ClInclude Include="InputClose.h" />
     <ClInclude Include="InputSpacebar.h" />
     <ClInclude Include="mvc\Controller.h" />

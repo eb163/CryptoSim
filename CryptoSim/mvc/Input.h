@@ -1,6 +1,6 @@
 #pragma once
 
-enum InputType {CLOSE, SPACEBAR};
+enum InputType {CLOSE, SPACEBAR, SPEED_CHANGE};
 
 class Input
 {
