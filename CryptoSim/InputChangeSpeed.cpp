@@ -1,6 +1,6 @@
 #include "InputChangeSpeed.h"
 
-InputChangeSpeed::InputChangeSpeed(int speedmodifier)
+InputChangeSpeed::InputChangeSpeed(SimRate speedmodifier)
 {
 	modifier = speedmodifier;
 	setType(InputType::SPEED_CHANGE);
@@ -11,12 +11,12 @@ InputChangeSpeed::~InputChangeSpeed()
 {
 }
 
-void InputChangeSpeed::setModifier(int n)
+void InputChangeSpeed::setModifier(SimRate n)
 {
 	modifier = n;
 }
 
-int InputChangeSpeed::getModifier()
+SimRate InputChangeSpeed::getModifier()
 {
 	return modifier;
 }

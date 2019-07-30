@@ -1,18 +1,20 @@
 #pragma once
 #include "mvc\Input.h"
+#include "SimRates.h"
+
 class InputChangeSpeed :
 	public Input
 {
 private:
-	int modifier;
+	SimRate modifier;
 protected:
 
 public:
-	InputChangeSpeed(int speedmodifier);
+	InputChangeSpeed(SimRate modifier);
 	~InputChangeSpeed();
 
-	void setModifier(int n);
-	int getModifier();
+	void setModifier(SimRate n);
+	SimRate getModifier();
 
 	bool isIncrease();
 	bool isDecrease();

@@ -165,6 +165,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="SimChangeNotice.h" />
     <ClInclude Include="SimPauseNotice.h" />
+    <ClInclude Include="SimRates.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>
