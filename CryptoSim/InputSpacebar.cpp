@@ -2,7 +2,7 @@
 
 InputSpacebar::InputSpacebar()
 {
-	setType(InputType::SPACEBAR);
+	setType(InputType::INPUT_SPACEBAR);
 }
 
 

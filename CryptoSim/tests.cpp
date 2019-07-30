@@ -196,7 +196,9 @@ void unitTestViewer()
 	while (c.isRunning() && v.isOpen())
 	{
 		v.updateDisplay();
+
 		//v.loop();
+		///*
 		SimPauseNotice* pauseN = new SimPauseNotice;
 		pauseN->pause();
 		cout << "Testing SimPauseNotice.isPaused..." << endl;
@@ -212,5 +214,6 @@ void unitTestViewer()
 		v.processNotice(runN);
 		wait = false;
 		while (wait == false) { wait = v.pollWindow(); };
+		//*/
 	}
 }

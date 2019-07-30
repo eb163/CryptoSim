@@ -4,7 +4,7 @@
 
 CloseNotice::CloseNotice()
 {
-	setType(NoticeType::CLOSE);
+	setType(NoticeType::NOTICE_CLOSE);
 	setMessage("NOTICE: Program is shutting down!");
 }
 

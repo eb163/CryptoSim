@@ -2,7 +2,7 @@
 
 SimPauseNotice::SimPauseNotice()
 {
-	setType(NoticeType::SIM_PAUSE);
+	setType(NoticeType::NOTICE_SIM_PAUSE);
 	status = false;
 	setMessage("undefined");
 }

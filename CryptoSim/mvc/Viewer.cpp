@@ -103,9 +103,9 @@ void Viewer::repositionUI()
 		- speed buttons : slow to the left of pause, speed up to the right of pause
 		- message log : right half of window
 	*/
-	int textLength = 0;
-	int textHeight = 0;
-	int offsetX = 10, offsetY = 5;
+	float textLength = 0;
+	float textHeight = 0;
+	float offsetX = 10, offsetY = 5;
 	
 	//crypto position
 	textLength = cryptoText.getCharacterSize() * cryptoText.getString().getSize();
@@ -158,28 +158,88 @@ bool Viewer::pollWindow()
 	{
 		cout << "Window got an sf::Event: Closed" << endl;
 		//create an input for closed event
+		Input* i = new InputClose();
+
 		//push the input to the queue
+		inputQueue.push(i);
+
 		result = true;
 	}
+
 	if (e.type == sf::Event::KeyReleased)
 	{
 		cout << "Window got an sf::Event: KeyReleased" << endl;
 
 		//2. space bar key is pressed
+		if (e.key.code == sf::Keyboard::Space)
+		{
+			cout << "Keypress is the spacebar!" << endl;
+			Input* i = new InputSpacebar();
+			inputQueue.push(i);
+			result = true;
+		}
 
 		//3. escape key is pressed (same as Closed event)
-
-		result = true;
+		if (e.key.code == sf::Keyboard::Escape)
+		{
+			cout << "Keypress is the escape key!" << endl;
+			Input* i = new InputClose();
+			inputQueue.push(i);
+			result = true;
+		}
 	}
 
 	if (e.type == sf::Event::MouseButtonReleased)
 	{
 		cout << "Window got an sf::Event: MouseButtonRleased" << endl;
 
+		float mouseX = e.mouseButton.x;
+		float mouseY = e.mouseButton.y;
+
+		cout << "Mouse coordinates: (" << mouseX << ", " << mouseY << ")" << endl;
+
 		//4. a mouse click is detected
+
 		//4a. the click is on the speed up button
+		//current collision detection is for a square, but good enough for now
+		float speedStartX = speedButtonPos.x - speedButtonSize / 2;
+		float speedStartY = speedButtonPos.y - speedButtonSize / 2;
+		float speedEndX = speedButtonPos.x + speedButtonSize / 2;
+		float speedEndY = speedButtonPos.y + speedButtonSize / 2;
+		cout << "Speed button mesh:" << "\nx: " << speedStartX << " to " << speedEndX << "\ny: " << speedStartY << " to " << speedEndY << endl;
+		if (((mouseX >= speedStartX) && mouseX <= speedEndX) && ((mouseY >= speedStartY) && (mouseY <= speedEndY)))
+		{
+			cout << "Speed up button clicked!" << endl;
+			Input* i = new InputChangeSpeed(SimRate::HIGH);
+		}
+
 		//4b. the click is on the slow down button
+
+		float slowStartX = slowButtonPos.x - slowButtonSize / 2;
+		float slowStartY = slowButtonPos.y - slowButtonSize / 2;
+		float slowEndX = slowButtonPos.x + slowButtonSize / 2;
+		float slowEndY = slowButtonPos.y + slowButtonSize / 2;
+		cout << "Slow button mesh:" << "\nx: " << slowStartX << " to " << slowEndX << "\ny: " << slowStartY << " to " << slowEndY << endl;
+		if (((mouseX >= slowStartX) && mouseX <= slowEndX) && ((mouseY >= slowStartY) && (mouseY <= slowEndY)))
+		{
+			cout << "Slow down button clicked!" << endl;
+			Input* i = new InputChangeSpeed(SimRate::LOW);
+		}
+
 		//4c. the click is on the pause / go button
+		float pauseStartX = pauseButtonPos.x - pauseButtonSize.x / 2;
+		float pauseEndX = pauseButtonPos.x + pauseButtonSize.x / 2;
+		float pauseStartY = pauseButtonPos.y - pauseButtonSize.y / 2;
+		float pauseEndY = pauseButtonPos.y + pauseButtonSize.y / 2;
+		cout << "Pause button mesh:" << "\nx: " << pauseStartX << " to " << pauseEndX << "\ny: " << pauseStartY << " to " << pauseEndY << endl;
+		if (((mouseX >= pauseStartX) && mouseX <= pauseEndX) && ((mouseY >= pauseStartY) && (mouseY <= pauseEndY)))
+		{
+			cout << "Pause button clicked!" << endl;
+			Input* i = new InputSpacebar(); //spacebar input used for pausing
+			inputQueue.push(i);
+		}
+
+
 
 		result = true;
 	}
@@ -230,7 +290,7 @@ void Viewer::processNotice(Notice* n)
 	cout << "Viewer.processNotice()" << endl;
 	//do stuff here
 
-	if (n->getType() == NoticeType::SIM_CHANGE)
+	if (n->getType() == NoticeType::NOTICE_SIM_CHANGE)
 	{
 		cout << n->getMessage() << endl;
 		//push message to messagelog
@@ -238,7 +298,7 @@ void Viewer::processNotice(Notice* n)
 
 	}
 
-	if (n->getType() == NoticeType::SIM_PAUSE)
+	if (n->getType() == NoticeType::NOTICE_SIM_PAUSE)
 	{
 		cout << n->getMessage() << endl;
 		//push message to messagelog
@@ -254,7 +314,7 @@ void Viewer::processNotice(Notice* n)
 		}
 	}
 
-	if (n->getType() == NoticeType::CLOSE)
+	if (n->getType() == NoticeType::NOTICE_CLOSE)
 	{
 		windowptr->close();
 		if (windowptr != nullptr)

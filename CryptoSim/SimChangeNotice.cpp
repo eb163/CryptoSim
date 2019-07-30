@@ -4,7 +4,7 @@
 
 SimChangeNotice::SimChangeNotice()
 {
-	setType(NoticeType::SIM_CHANGE);
+	setType(NoticeType::NOTICE_SIM_CHANGE);
 }
 
 

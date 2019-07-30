@@ -2,7 +2,7 @@
 
 InputClose::InputClose()
 {
-	setType(InputType::CLOSE);
+	setType(InputType::INPUT_CLOSE);
 }
 
 

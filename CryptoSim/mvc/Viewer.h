@@ -14,6 +14,10 @@
 #include "SFML/Network.hpp"
 #include "SFML/System.hpp"
 
+#include "../InputClose.h"
+#include "../InputSpacebar.h"
+#include "../InputChangeSpeed.h"
+
 #include "../CloseNotice.h"
 #include "../SimChangeNotice.h"
 #include "../SimPauseNotice.h"
@@ -62,14 +66,14 @@ protected:
 	sf::Color pausedColor = sf::Color::Red;
 	sf::Color goColor = sf::Color::Green;
 
-	int slowButtonSize;
-	int slowButtonRotation;
+	float slowButtonSize;
+	float slowButtonRotation;
 	sf::Vector2f slowButtonPos;
 	//color?
 	sf::CircleShape slowButton;
 
-	int speedButtonSize;
-	int speedButtonRotation;
+	float speedButtonSize;
+	float speedButtonRotation;
 	sf::Vector2f speedButtonPos;
 	//color?
 	sf::CircleShape speedButton;

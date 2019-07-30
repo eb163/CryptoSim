@@ -3,7 +3,7 @@
 InputChangeSpeed::InputChangeSpeed(SimRate speedmodifier)
 {
 	modifier = speedmodifier;
-	setType(InputType::SPEED_CHANGE);
+	setType(InputType::INPUT_SPEED_CHANGE);
 }
 
 
