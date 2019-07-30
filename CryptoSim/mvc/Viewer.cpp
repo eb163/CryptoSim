@@ -210,7 +210,7 @@ bool Viewer::pollWindow()
 		if (((mouseX >= speedStartX) && mouseX <= speedEndX) && ((mouseY >= speedStartY) && (mouseY <= speedEndY)))
 		{
 			cout << "Speed up button clicked!" << endl;
-			Input* i = new InputChangeSpeed(SimRate::HIGH);
+			Input* i = new InputChangeSpeed(SimRate::SPEED);
 		}
 
 		//4b. the click is on the slow down button
@@ -223,7 +223,7 @@ bool Viewer::pollWindow()
 		if (((mouseX >= slowStartX) && mouseX <= slowEndX) && ((mouseY >= slowStartY) && (mouseY <= slowEndY)))
 		{
 			cout << "Slow down button clicked!" << endl;
-			Input* i = new InputChangeSpeed(SimRate::LOW);
+			Input* i = new InputChangeSpeed(SimRate::SLOW);
 		}
 
 		//4c. the click is on the pause / go button
@@ -235,7 +235,7 @@ bool Viewer::pollWindow()
 		if (((mouseX >= pauseStartX) && mouseX <= pauseEndX) && ((mouseY >= pauseStartY) && (mouseY <= pauseEndY)))
 		{
 			cout << "Pause button clicked!" << endl;
-			Input* i = new InputSpacebar(); //spacebar input used for pausing
+			Input* i = new InputChangeSpeed(SimRate::PAUSE);
 			inputQueue.push(i);
 		}
 

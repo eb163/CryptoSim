@@ -1,3 +1,3 @@
 #pragma once
 
-enum SimRate { LOW = -3, MED = 1, HIGH = 3 };
+enum SimRate { SLOW = -1, PAUSE = 0, SPEED = 1 };
