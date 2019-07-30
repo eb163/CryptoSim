@@ -72,6 +72,9 @@
     <ClCompile Include="CloseNotice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InputClose.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mvc\Controller.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CloseNotice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputClose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

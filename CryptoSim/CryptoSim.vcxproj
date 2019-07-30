@@ -124,6 +124,7 @@
     <ClCompile Include="CloseNotice.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="InputClose.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mvc\Controller.cpp" />
     <ClCompile Include="mvc\Event.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="CloseNotice.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="Driver.h" />
+    <ClInclude Include="InputClose.h" />
     <ClInclude Include="mvc\Controller.h" />
     <ClInclude Include="mvc\ControllerInterface.h" />
     <ClInclude Include="mvc\debug.h" />
