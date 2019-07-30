@@ -81,6 +81,9 @@
     <ClCompile Include="InputChangeSpeed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EventClose.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mvc\Controller.h">
@@ -159,6 +162,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SimRates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventClose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

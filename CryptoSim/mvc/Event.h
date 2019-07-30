@@ -1,6 +1,6 @@
 #pragma once
 
-enum EventType {EVENT_CLOSED, EVENT_RANDOMIZE};
+enum EventType {EVENT_CLOSE};
 
 class Event
 {
