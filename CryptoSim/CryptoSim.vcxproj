@@ -125,6 +125,7 @@
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="EventClose.cpp" />
+    <ClCompile Include="EventPause.cpp" />
     <ClCompile Include="InputChangeSpeed.cpp" />
     <ClCompile Include="InputClose.cpp" />
     <ClCompile Include="InputSpacebar.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="EventClose.h" />
+    <ClInclude Include="EventPause.h" />
     <ClInclude Include="InputChangeSpeed.h" />
     <ClInclude Include="InputClose.h" />
     <ClInclude Include="InputSpacebar.h" />
