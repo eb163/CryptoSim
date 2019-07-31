@@ -15,7 +15,6 @@ private:
 	DataManager* manager = nullptr;
 
 	//list of actions which the Driver can take to operate on the Network of Nodes
-	//how to implement?
 	int numberOfActions = 2;
 
 public:

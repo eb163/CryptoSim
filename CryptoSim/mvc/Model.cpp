@@ -32,6 +32,38 @@ void Model::updateModel(Event* e)
 {
 	cout << "Model.updateModel()" << endl;
 	//do stuff based on what Event is passed and what data needs to be modified
+
+	if (e->getType() == EventType::EVENT_CLOSE)
+	{
+		cout << "Model.Event = EventClose" << endl;
+
+		Notice* n = new NoticeClose();
+	}
+
+	if (e->getType() == EventType::EVENT_PAUSE)
+	{
+		cout << "Model.Event = EventPause" << endl;
+	}
+
+	if (e->getType() == EventType::EVENT_SPEEDCHANGE)
+	{
+		cout << "Model.Event = EventSpeedChange" << endl;
+		EventSpeedChange* eptr = static_cast<EventSpeedChange*>(e);
+		if (eptr->getSimRate() == SimRate::PAUSE)
+		{
+			//how to pause?
+			driver.setSimRate(manager.getBaseSimRate() * abs(eptr->getModifier()));
+		}
+		if (eptr->getSimRate() == SimRate::SPEED)
+		{
+			driver.setSimRate(manager.getBaseSimRate() / abs(eptr->getModifier()));
+		}
+		if (eptr->getSimRate() == SimRate::SLOW)
+		{
+			driver.setSimRate(manager.getBaseSimRate() * abs(eptr->getModifier()));
+		}
+	}
+
 }
 
 void Model::takeEvent(Event* e)
