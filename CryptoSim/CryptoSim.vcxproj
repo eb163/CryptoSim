@@ -141,6 +141,7 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NoticeSimChange.cpp" />
     <ClCompile Include="NoticeSimPause.cpp" />
+    <ClCompile Include="NoticeSpeedChange.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="NoticeSimChange.h" />
     <ClInclude Include="NoticeSimPause.h" />
+    <ClInclude Include="NoticeSpeedChange.h" />
     <ClInclude Include="SimRates.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="Transaction.h" />
