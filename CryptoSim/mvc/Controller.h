@@ -7,6 +7,10 @@
 #include "Viewer.h"
 #include "debug.h"
 
+#include "../EventClose.h"
+#include "../EventPause.h"
+#include "../EventSpeedChange.h"
+
 using std::queue;
 
 class Controller : public ControllerInterface

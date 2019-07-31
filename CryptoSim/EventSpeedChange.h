@@ -8,14 +8,15 @@ private:
 	SimRate rate;
 	int modifier;
 
+	void setSimRate(SimRate s);
+
 protected:
 
 public:
-	EventSpeedChange();
+	EventSpeedChange(SimRate s);
 	~EventSpeedChange();
 
 	SimRate getSimRate();
-	void setSimRate(SimRate s);
 
 	int getModifier();
 };

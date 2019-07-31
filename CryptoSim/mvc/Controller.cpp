@@ -2,16 +2,6 @@
 
 Controller::Controller()
 {
-	/*
-	mptr = new Model();
-
-	vptr = new Viewer();
-
-	mptr->connectViewer(vptr);
-
-	vptr->connectModel(mptr);
-	vptr->connectController(this);
-	*/
 	mptr = nullptr;
 	vptr = nullptr;
 }
@@ -67,9 +57,39 @@ void Controller::parseInput()
 		Input* i = inputQueue.front();
 		inputQueue.pop();
 
-		/*
 		//parse Input here
-		*/
+		//close Input
+		if (i->getType() == InputType::INPUT_CLOSE)
+		{
+			e = new EventClose();
+		}
+
+		//spacebar input
+		if (i->getType() == InputType::INPUT_SPACEBAR)
+		{
+			e = new EventSpeedChange(SimRate::PAUSE);
+		}
+
+		//speed change input
+		if (i->getType() == InputType::INPUT_SPEED_CHANGE)
+		{
+			bool incr = static_cast<InputChangeSpeed*>(i)->isIncrease();
+			bool decr = static_cast<InputChangeSpeed*>(i)->isDecrease();
+			if (incr)
+			{
+				e = new EventSpeedChange(SimRate::SPEED);
+			}
+			else if (decr)
+			{
+				e = new EventSpeedChange(SimRate::SLOW);
+			}
+		}
+
+
+		if (e != nullptr)
+		{
+			eventQueue.push(e);
+		}
 
 		//deallocate memory
 		if (i != nullptr)

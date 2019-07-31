@@ -1,8 +1,9 @@
 #include "EventSpeedChange.h"
 
-EventSpeedChange::EventSpeedChange()
+EventSpeedChange::EventSpeedChange(SimRate s)
 {
 	setType(EventType::EVENT_SPEEDCHANGE);
+	setSimRate(s);
 }
 
 EventSpeedChange::~EventSpeedChange()
