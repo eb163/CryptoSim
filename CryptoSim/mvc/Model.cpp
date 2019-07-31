@@ -38,11 +38,14 @@ void Model::updateModel(Event* e)
 		cout << "Model.Event = EventClose" << endl;
 
 		Notice* n = new NoticeClose();
+		noticeQueue.push(n);
 	}
 
 	if (e->getType() == EventType::EVENT_PAUSE)
 	{
 		cout << "Model.Event = EventPause" << endl;
+		Notice* n = new NoticeSimPause();
+		noticeQueue.push(n);
 	}
 
 	if (e->getType() == EventType::EVENT_SPEEDCHANGE)
@@ -51,15 +54,19 @@ void Model::updateModel(Event* e)
 		EventSpeedChange* eptr = static_cast<EventSpeedChange*>(e);
 		if (eptr->getSimRate() == SimRate::PAUSE)
 		{
+			cout << "Model parsed Event = EventSpeedChange(PAUSE)" << endl;
 			//how to pause?
 			driver.setSimRate(manager.getBaseSimRate() * abs(eptr->getModifier()));
+			//need to define NoticeSpeedChange
 		}
 		if (eptr->getSimRate() == SimRate::SPEED)
 		{
+			cout << "Model parsed Event = EventSpeedChange(SPEEDUP)" << endl;
 			driver.setSimRate(manager.getBaseSimRate() / abs(eptr->getModifier()));
 		}
 		if (eptr->getSimRate() == SimRate::SLOW)
 		{
+			cout << "Model parsed Event = EventSpeedChange(SLOWDOWN)" << endl;
 			driver.setSimRate(manager.getBaseSimRate() * abs(eptr->getModifier()));
 		}
 	}
