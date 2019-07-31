@@ -121,7 +121,7 @@
     <ClCompile Include="blockchain\Block.cpp" />
     <ClCompile Include="blockchain\Blockchain.cpp" />
     <ClCompile Include="blockchain\sha256.cpp" />
-    <ClCompile Include="CloseNotice.cpp" />
+    <ClCompile Include="NoticeClose.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="EventClose.cpp" />
@@ -139,8 +139,8 @@
     <ClCompile Include="mvc\Viewer.cpp" />
     <ClCompile Include="Network.cpp" />
     <ClCompile Include="Node.cpp" />
-    <ClCompile Include="SimChangeNotice.cpp" />
-    <ClCompile Include="SimPauseNotice.cpp" />
+    <ClCompile Include="NoticeSimChange.cpp" />
+    <ClCompile Include="NoticeSimPause.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
@@ -148,7 +148,7 @@
     <ClInclude Include="blockchain\Block.h" />
     <ClInclude Include="blockchain\Blockchain.h" />
     <ClInclude Include="blockchain\sha256.h" />
-    <ClInclude Include="CloseNotice.h" />
+    <ClInclude Include="NoticeClose.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="EventClose.h" />
@@ -169,8 +169,8 @@
     <ClInclude Include="mvc\ViewerInterface.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="SimChangeNotice.h" />
-    <ClInclude Include="SimPauseNotice.h" />
+    <ClInclude Include="NoticeSimChange.h" />
+    <ClInclude Include="NoticeSimPause.h" />
     <ClInclude Include="SimRates.h" />
     <ClInclude Include="tests.h" />
     <ClInclude Include="Transaction.h" />

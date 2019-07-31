@@ -63,15 +63,6 @@
     <ClCompile Include="DataManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SimChangeNotice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SimPauseNotice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CloseNotice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InputClose.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -88,6 +79,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EventSpeedChange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NoticeClose.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NoticeSimChange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NoticeSimPause.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -149,15 +149,6 @@
     <ClInclude Include="DataManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SimChangeNotice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimPauseNotice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CloseNotice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InputClose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -177,6 +168,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EventSpeedChange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoticeSimChange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoticeSimPause.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NoticeClose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

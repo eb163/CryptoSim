@@ -1,6 +1,6 @@
 #pragma once
 #include "mvc\Notice.h"
-class CloseNotice :
+class NoticeClose :
 	public Notice
 {
 private:
@@ -8,7 +8,7 @@ private:
 protected:
 
 public:
-	CloseNotice();
-	~CloseNotice();
+	NoticeClose();
+	~NoticeClose();
 };
 

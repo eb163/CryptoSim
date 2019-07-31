@@ -303,7 +303,7 @@ void Viewer::processNotice(Notice* n)
 		cout << n->getMessage() << endl;
 		//push message to messagelog
 		//update messagelog display
-		bool isPaused = static_cast<SimPauseNotice*>(n)->isPaused();
+		bool isPaused = static_cast<NoticeSimPause*>(n)->isPaused();
 		if (isPaused)
 		{
 			pauseButton.setFillColor(pausedColor);

@@ -1,6 +1,6 @@
 #pragma once
 #include "mvc\Notice.h"
-class SimPauseNotice :
+class NoticeSimPause :
 	public Notice
 {
 private:
@@ -9,8 +9,8 @@ private:
 protected:
 
 public:
-	SimPauseNotice();
-	~SimPauseNotice();
+	NoticeSimPause();
+	~NoticeSimPause();
 
 	bool isPaused();
 	bool isRunning();

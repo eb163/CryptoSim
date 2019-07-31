@@ -1,15 +1,15 @@
-#include "CloseNotice.h"
+#include "NoticeClose.h"
 
 
 
-CloseNotice::CloseNotice()
+NoticeClose::NoticeClose()
 {
 	setType(NoticeType::NOTICE_CLOSE);
 	setMessage("NOTICE: Program is shutting down!");
 }
 
 
-CloseNotice::~CloseNotice()
+NoticeClose::~NoticeClose()
 {
 
 }

@@ -5,7 +5,7 @@
 
 using std::string;
 
-class SimChangeNotice :
+class NoticeSimChange :
 	public Notice
 {
 private:
@@ -16,8 +16,8 @@ private:
 protected:
 
 public:
-	SimChangeNotice();
-	~SimChangeNotice();
+	NoticeSimChange();
+	~NoticeSimChange();
 
 	void setCryptoChange(float amt);
 	float getCryptoChange();

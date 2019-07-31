@@ -199,7 +199,7 @@ void unitTestViewer()
 
 		//v.loop();
 		///*
-		SimPauseNotice* pauseN = new SimPauseNotice;
+		NoticeSimPause* pauseN = new NoticeSimPause;
 		pauseN->pause();
 		cout << "Testing SimPauseNotice.isPaused..." << endl;
 		v.processNotice(pauseN);
@@ -208,7 +208,7 @@ void unitTestViewer()
 
 		v.updateDisplay();
 
-		SimPauseNotice* runN = new SimPauseNotice;
+		NoticeSimPause* runN = new NoticeSimPause;
 		runN->run();
 		cout << "Testing SimPauseNotice.isRunning..." << endl;
 		v.processNotice(runN);

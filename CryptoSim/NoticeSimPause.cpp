@@ -1,6 +1,6 @@
-#include "SimPauseNotice.h"
+#include "NoticeSimPause.h"
 
-SimPauseNotice::SimPauseNotice()
+NoticeSimPause::NoticeSimPause()
 {
 	setType(NoticeType::NOTICE_SIM_PAUSE);
 	status = false;
@@ -8,28 +8,28 @@ SimPauseNotice::SimPauseNotice()
 }
 
 
-SimPauseNotice::~SimPauseNotice()
+NoticeSimPause::~NoticeSimPause()
 {
 
 }
 
-bool SimPauseNotice::isPaused()
+bool NoticeSimPause::isPaused()
 {
 	return (status == true);
 }
 
-bool SimPauseNotice::isRunning()
+bool NoticeSimPause::isRunning()
 {
 	return (status == false);
 }
 
-void SimPauseNotice::pause()
+void NoticeSimPause::pause()
 {
 	status = true;
 	setMessage("Sim is paused!");
 }
 
-void SimPauseNotice::run()
+void NoticeSimPause::run()
 {
 	status = false;
 	setMessage("Sim is running!");

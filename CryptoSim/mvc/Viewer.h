@@ -18,9 +18,9 @@
 #include "../InputSpacebar.h"
 #include "../InputChangeSpeed.h"
 
-#include "../CloseNotice.h"
-#include "../SimChangeNotice.h"
-#include "../SimPauseNotice.h"
+#include "../NoticeClose.h"
+#include "../NoticeSimChange.h"
+#include "../NoticeSimPause.h"
 
 #include "debug.h"
 
