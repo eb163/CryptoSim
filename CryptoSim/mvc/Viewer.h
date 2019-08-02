@@ -93,6 +93,8 @@ public:
 
 	bool pollWindow();
 
+	void parseSFEvent();
+
 	void updateText(); //get data from data manager and add to text
 
 	void connectModel(Model* m);

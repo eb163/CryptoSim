@@ -160,8 +160,30 @@ void Viewer::repositionUI()
 
 bool Viewer::pollWindow()
 {
+	bool input = false, timeout = false;
+	time_t pollCurr = 0;
+	time_t pollDiff = 0;
+	time_t pollStart = time(0);
+	time_t pollRate = 10;
+	do
+	{
+		cout << "Polling Window for input..." << endl;
+		pollCurr = time(0);
+		pollDiff += pollCurr - pollStart;
+		parseSFEvent();
+		if(pollDiff >= pollRate)
+		{
+			timeout = true;
+		}
+
+	} while (input == false && timeout == false);
+
+	return input;
+}
+
+void Viewer::parseSFEvent()
+{
 	sf::Event e;
-	bool result = false;
 	windowptr->pollEvent(e);
 	//possible events:
 	//1. closed
@@ -173,8 +195,6 @@ bool Viewer::pollWindow()
 
 		//push the input to the queue
 		inputQueue.push(i);
-
-		result = true;
 	}
 
 	if (e.type == sf::Event::KeyReleased)
@@ -187,7 +207,6 @@ bool Viewer::pollWindow()
 			cout << "Keypress is the spacebar!" << endl;
 			Input* i = new InputSpacebar();
 			inputQueue.push(i);
-			result = true;
 		}
 
 		//3. escape key is pressed (same as Closed event)
@@ -196,7 +215,6 @@ bool Viewer::pollWindow()
 			cout << "Keypress is the escape key!" << endl;
 			Input* i = new InputClose();
 			inputQueue.push(i);
-			result = true;
 		}
 	}
 
@@ -253,19 +271,12 @@ bool Viewer::pollWindow()
 			i = new InputSpacebar();
 			inputQueue.push(i);
 		}
-
-
-
-		result = true;
 	}
-
-	return result;
 }
 
 void Viewer::updateText()
 {
 	cout << "Viewer.updateText()" << endl;
-	cout << "mptr = " << mptr << endl;
 	float crypto = mptr->getDataManager().getTotalCrypto();
 	int transacs = mptr->getDataManager().getTotalTransactions();
 	time_t currTime = mptr->getDataManager().getTimePassed();
@@ -277,6 +288,10 @@ void Viewer::updateText()
 	cryptoText.setString(newcryptostr);
 	transacText.setString(newtransacstr);
 	clockText.setString(newclockstr);
+
+	//time_t currRate = mptr->getDataManager().getBaseSimRate();
+	//rateStr = "Update Rate: " + to_string(currRate);
+	//rateText.setString(rateStr);
 }
 
 void Viewer::connectModel(Model* m)

@@ -192,6 +192,11 @@ void unitTestViewer()
 	m.connectViewer(&v);
 	v.connectModel(&m);
 	v.connectController(&c);
+	
+	time_t pollStart = 0;
+	time_t pollCurr = 0;
+	time_t pollStop = 1;
+	time_t pollDiff = 0;
 
 	while (c.isRunning() && v.isOpen())
 	{
@@ -202,8 +207,19 @@ void unitTestViewer()
 		pauseN->pause();
 		cout << "Testing SimPauseNotice.isPaused..." << endl;
 		v.processNotice(pauseN);
-		bool wait = false;
-		while (wait == false) { wait = v.pollWindow(); };
+		bool gotInput = false, timeOut = false;
+		pollStart = time(0);
+		while (gotInput == false && timeOut == false) 
+		{ 
+			gotInput = v.pollWindow(); 
+			pollCurr = time(0);
+			pollDiff = pollCurr - pollStart;
+			if(pollDiff > pollStop)
+			{
+				timeOut = true;
+			}
+
+		}
 
 		v.updateDisplay();
 
@@ -211,8 +227,18 @@ void unitTestViewer()
 		runN->run();
 		cout << "Testing SimPauseNotice.isRunning..." << endl;
 		v.processNotice(runN);
-		wait = false;
-		while (wait == false) { wait = v.pollWindow(); };
+		gotInput = false; timeOut = false;
+		pollStart = time(0);
+		while (gotInput == false && timeOut == false) 
+		{ 
+			gotInput = v.pollWindow();
+			pollCurr = time(0);
+			pollDiff = pollCurr - pollStart;
+			if (pollDiff > pollStop)
+			{
+				timeOut = true;
+			}
+		};
 		
 	}
 }
@@ -239,11 +265,16 @@ void systemTestMVC()
 
 	//test Viewer parsing inputs and sending them to Controller and Model
 
+	time_t pollStart = 0;
+	time_t pollCurr = 0;
+	time_t pollStop = 1;
+	time_t pollDiff = 0;
+
 	while (v->isOpen())
 	{
 		v->updateDisplay();
-		bool input = false;
-		while (input == false) { input = v->pollWindow(); }
+		bool input = false, timeout = false;
+		//v->pollWindow();
 		v->loop();
 		c->loop();
 	}
