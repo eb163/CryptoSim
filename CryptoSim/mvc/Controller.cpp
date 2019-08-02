@@ -4,6 +4,7 @@ Controller::Controller()
 {
 	mptr = nullptr;
 	vptr = nullptr;
+	lastUpdate = 0;
 }
 
 Controller::Controller(Model* m, Viewer* v)
@@ -61,20 +62,25 @@ void Controller::parseInput()
 		//close Input
 		if (i->getType() == InputType::INPUT_CLOSE)
 		{
+			cout << "Controller got an InputClose" << endl;
 			e = new EventClose();
 		}
 
 		//spacebar input
 		if (i->getType() == InputType::INPUT_SPACEBAR)
 		{
-			e = new EventSpeedChange(SimRate::PAUSE);
+			cout << "Controller got an InputSpacebar" << endl;
+			e = new EventPause();
 		}
 
 		//speed change input
 		if (i->getType() == InputType::INPUT_SPEED_CHANGE)
 		{
+			cout << "Controller got an InputSpeedChange" << endl;
 			bool incr = static_cast<InputChangeSpeed*>(i)->isIncrease();
 			bool decr = static_cast<InputChangeSpeed*>(i)->isDecrease();
+			cout << "SpeedChange is an increase: " << incr << endl;
+			cout << "SpeedChange is a decrease: " << decr << endl;
 			if (incr)
 			{
 				e = new EventSpeedChange(SimRate::SPEED);
@@ -82,6 +88,10 @@ void Controller::parseInput()
 			else if (decr)
 			{
 				e = new EventSpeedChange(SimRate::SLOW);
+			}
+			else
+			{
+				e = new EventSpeedChange(SimRate::PAUSE);
 			}
 		}
 
@@ -141,6 +151,15 @@ void Controller::loop()
 	running = true;
 	cout << "Controller.loop()" << endl;
 		cout << "----------------\nNew Controller.loop() iteration" << endl;
+		//0. update clock
+		time_t currTime = 0;
+		time_t dT = 0;
+		if (mptr->isRunning())
+		{
+			currTime = time(0);
+			dT = currTime - getLastUpdate();
+		}
+
 		//1. poll Viewer for Inputs and add any Inputs to queue
 		this->takeInput();
 
@@ -153,8 +172,20 @@ void Controller::loop()
 		//4. ping Model to update and then push notices to Viewer
 		mptr->update();
 
+		//4.5 notify Model of time change
+		if (mptr->isRunning())
+		{
+			mptr->simUpdate(dT);
+		}
+
 		//5. ping Viewer to update
 		vptr->update();
+
+		//6. update counter for time since prev iteration
+		if(mptr->isRunning())
+		{
+			setLastupdate(currTime);
+		}
 
 
 }
@@ -162,4 +193,14 @@ void Controller::loop()
 void Controller::pause()
 {
 	running = false;
+}
+
+void Controller::setLastupdate(time_t time)
+{
+	lastUpdate = time;
+}
+
+time_t Controller::getLastUpdate()
+{
+	return lastUpdate;
 }

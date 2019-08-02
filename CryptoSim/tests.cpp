@@ -186,7 +186,7 @@ void unitTestViewer()
 	Controller c;
 	Model m;
 	Viewer v;
-	m.init(0, 0, -1);
+	m.init(3, 3, 999);
 	c.connectModel(&m);
 	c.connectViewer(&v);
 	m.connectViewer(&v);
@@ -195,11 +195,9 @@ void unitTestViewer()
 
 	while (c.isRunning() && v.isOpen())
 	{
-		//v.updateDisplay();
+		v.updateDisplay();
 
-		v.loop();
-		c.loop();
-		/*
+		
 		NoticeSimPause* pauseN = new NoticeSimPause;
 		pauseN->pause();
 		cout << "Testing SimPauseNotice.isPaused..." << endl;
@@ -215,6 +213,44 @@ void unitTestViewer()
 		v.processNotice(runN);
 		wait = false;
 		while (wait == false) { wait = v.pollWindow(); };
-		*/
+		
 	}
+}
+
+void connect(Model* m, Viewer* view, Controller* ctrl)
+{
+	ctrl->connectModel(m);
+	ctrl->connectViewer(view);
+	m->connectViewer(view);
+	view->connectModel(m);
+	view->connectController(ctrl);
+}
+
+void systemTestMVC()
+{
+	int nodeCount = 3;
+	float cryptoRate = 5;
+	time_t updateRate = 9;
+	Model* m = new Model();
+	Viewer* v = new Viewer();
+	Controller* c = new Controller();
+	m->init(3, 5, 9);
+	connect(m, v, c);
+
+	//test Viewer parsing inputs and sending them to Controller and Model
+
+	while (v->isOpen())
+	{
+		v->updateDisplay();
+		bool input = false;
+		while (input == false) { input = v->pollWindow(); }
+		v->loop();
+		c->loop();
+	}
+
+
+
+	delete m; m = nullptr;
+	delete v; v = nullptr;
+	delete c; c = nullptr;
 }

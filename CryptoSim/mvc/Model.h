@@ -28,6 +28,8 @@ protected:
 	queue<Event*> eventsQueue; //for events from controller
 	queue<Notice*> noticeQueue; //for notices to send to viewer
 
+	bool running;
+
 	Driver driver;
 	Network netw;
 	DataManager manager;
@@ -48,6 +50,10 @@ public:
 	void updateModel(Event* e);
 	void takeEvent(Event* e);
 	void update();
+
+	bool isRunning();
+	void run();
+	void pause();
 
 	void init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate); //initialize the simulation system
 

@@ -10,6 +10,7 @@ void NoticeSpeedChange::setRate(time_t rate)
 NoticeSpeedChange::NoticeSpeedChange(time_t rate)
 {
 	setType(NoticeType::NOTICE_SPEED_CHANGE);
+	setRate(rate);
 }
 
 

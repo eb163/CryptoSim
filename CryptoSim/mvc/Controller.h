@@ -3,6 +3,7 @@
 #define CONTROLLER_H
 #include "ControllerInterface.h"
 #include <queue>
+#include <ctime>
 #include "Model.h"
 #include "Viewer.h"
 #include "debug.h"
@@ -18,6 +19,7 @@ class Controller : public ControllerInterface
 private:
 	Model* mptr = nullptr;
 	Viewer* vptr = nullptr;
+	time_t lastUpdate = 0;
 
 protected:
 	queue<Input*> inputQueue;
@@ -50,6 +52,9 @@ public:
 
 	void loop();
 	void pause();
+
+	void setLastupdate(time_t time);
+	time_t getLastUpdate();
 
 };
 

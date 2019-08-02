@@ -21,6 +21,7 @@
 #include "../NoticeClose.h"
 #include "../NoticeSimChange.h"
 #include "../NoticeSimPause.h"
+#include "../NoticeSpeedChange.h"
 
 #include "debug.h"
 
@@ -59,6 +60,10 @@ protected:
 	string clockStr = "Time: ";
 	sf::Text clockText;
 	sf::Vector2f clockTextPos;
+
+	string rateStr = "Update Rate: ";
+	sf::Text rateText;
+	sf::Vector2f rateTextPos;
 
 	sf::Vector2f pauseButtonSize;
 	sf::Vector2f pauseButtonPos;

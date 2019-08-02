@@ -4,9 +4,28 @@
 
 Model::Model()
 {
-
 }
 
+void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
+{
+	running = true;
+
+	//initialize the network
+	netw.connectManager(&manager);
+	netw.addNewNodes(nodesInNetwork);
+	//printNetworkNodes(&netw);
+
+
+	//initialize the DataManager
+	manager.setCryptoPerMine(baseCryptoRate);
+	manager.setBaseSimRate(baseTimeRate);
+
+	//initialize the driver
+	driver.setSimRate(manager.getBaseSimRate());
+	driver.setTimeSinceLastAction(0);
+	driver.connectDataManager(&manager);
+	driver.connectNetwork(&netw);
+}
 
 Model::~Model()
 {
@@ -38,13 +57,30 @@ void Model::updateModel(Event* e)
 		cout << "Model.Event = EventClose" << endl;
 
 		Notice* n = new NoticeClose();
+		n->setMessage("Closing the program!");
 		noticeQueue.push(n);
 	}
 
 	if (e->getType() == EventType::EVENT_PAUSE)
 	{
 		cout << "Model.Event = EventPause" << endl;
+		if (this->isRunning())
+		{
+			this->pause();
+		}
+		else
+		{
+			this->run();
+		}
 		Notice* n = new NoticeSimPause();
+		if (isRunning())
+		{
+			n->setMessage("The Sim is running!");
+		}
+		else
+		{
+			n->setMessage("The Sim is paused!");
+		}
 		noticeQueue.push(n);
 	}
 
@@ -55,19 +91,29 @@ void Model::updateModel(Event* e)
 		if (eptr->getSimRate() == SimRate::PAUSE)
 		{
 			cout << "Model parsed Event = EventSpeedChange(PAUSE)" << endl;
-			//how to pause?
-			driver.setSimRate(manager.getBaseSimRate() * abs(eptr->getModifier()));
-			//need to define NoticeSpeedChange
+			driver.setSimRate(0);
+			Notice* n = new NoticeSpeedChange(driver.getSimRate());
+			string msg = "Changing speed to: "; msg += to_string(driver.getSimRate());
+			n->setMessage(msg);
+			noticeQueue.push(n);
 		}
 		if (eptr->getSimRate() == SimRate::SPEED)
 		{
 			cout << "Model parsed Event = EventSpeedChange(SPEEDUP)" << endl;
 			driver.setSimRate(manager.getBaseSimRate() / abs(eptr->getModifier()));
+			Notice* n = new NoticeSpeedChange(driver.getSimRate());
+			string msg = "Changing speed to: "; msg += to_string(driver.getSimRate());
+			n->setMessage(msg);
+			noticeQueue.push(n);
 		}
 		if (eptr->getSimRate() == SimRate::SLOW)
 		{
 			cout << "Model parsed Event = EventSpeedChange(SLOWDOWN)" << endl;
 			driver.setSimRate(manager.getBaseSimRate() * abs(eptr->getModifier()));
+			Notice* n = new NoticeSpeedChange(driver.getSimRate());
+			string msg = "Changing speed to: "; msg += to_string(driver.getSimRate());
+			n->setMessage(msg);
+			noticeQueue.push(n);
 		}
 	}
 
@@ -91,12 +137,13 @@ void Model::update()
 		//update the model data
 		updateModel(e);
 
-		//create a Notice based on the Event
-		Notice* n = nullptr;
-		//notices need to be fleshed out according to the project requirements
+		//notices are created and queued in updateModel
 
-		//push to queue to send to viewer
-		noticeQueue.push(n);
+		if (e != nullptr)
+		{
+			delete e;
+			e = nullptr;
+		}
 	}
 
 	while (noticeQueue.empty() == false)
@@ -108,23 +155,19 @@ void Model::update()
 	}
 }
 
-void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
+bool Model::isRunning()
 {
-	//initialize the network
-	netw.connectManager(&manager);
-	netw.addNewNodes(nodesInNetwork);
-	//printNetworkNodes(&netw);
-	
+	return running;
+}
 
-	//initialize the DataManager
-	manager.setCryptoPerMine(baseCryptoRate);
-	manager.setBaseSimRate(baseTimeRate);
+void Model::run()
+{
+	running = true;
+}
 
-	//initialize the driver
-	driver.setSimRate(manager.getBaseSimRate());
-	driver.setTimeSinceLastAction(0);
-	driver.connectDataManager(&manager);
-	driver.connectNetwork(&netw);
+void Model::pause()
+{
+	running = false;
 }
 
 DataManager Model::getDataManager()

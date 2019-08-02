@@ -37,3 +37,5 @@ void unitTestViewer();
 //void unitTestModel();
 
 //void unitTestController();
+
+void systemTestMVC();

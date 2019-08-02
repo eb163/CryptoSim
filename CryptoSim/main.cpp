@@ -36,7 +36,9 @@ int main()
 	//unitTestNetwork();
 	//unitTestDriver();
 
-	unitTestViewer();
+	//unitTestViewer();
+
+	systemTestMVC();
 
 
 	/////////////////////////////////////////////////

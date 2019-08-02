@@ -36,6 +36,10 @@ Viewer::Viewer()
 	clockText.setString(clockStr);
 	clockText.setFont(font);
 
+	rateText.setPosition(rateTextPos);
+	rateText.setString(rateStr);
+	rateText.setFont(font);
+
 	pauseButtonSize.x = 100; //arbitrary
 	pauseButtonSize.y = 100; //arbitrary
 	pauseButtonPos.x = 400;	//arbitrary
@@ -128,6 +132,13 @@ void Viewer::repositionUI()
 	clockTextPos.y = transacTextPos.y + textHeight + offsetY;
 	clockText.setPosition(clockTextPos);
 
+	//rate position
+	textLength = rateText.getCharacterSize() * rateText.getString().getSize();
+	textHeight = rateText.getCharacterSize();
+	rateTextPos.x = 0 + offsetX;
+	rateTextPos.y = clockTextPos.y + textHeight + offsetY;
+	rateText.setPosition(rateTextPos);
+
 	//pause button
 	pauseButtonPos.y = videomodeptr->height - pauseButtonSize.y / 2 - offsetY * 5;
 	pauseButtonPos.x = videomodeptr->width / 4;
@@ -211,6 +222,7 @@ bool Viewer::pollWindow()
 		{
 			cout << "Speed up button clicked!" << endl;
 			Input* i = new InputChangeSpeed(SimRate::SPEED);
+			inputQueue.push(i);
 		}
 
 		//4b. the click is on the slow down button
@@ -224,6 +236,7 @@ bool Viewer::pollWindow()
 		{
 			cout << "Slow down button clicked!" << endl;
 			Input* i = new InputChangeSpeed(SimRate::SLOW);
+			inputQueue.push(i);
 		}
 
 		//4c. the click is on the pause / go button
@@ -236,6 +249,8 @@ bool Viewer::pollWindow()
 		{
 			cout << "Pause button clicked!" << endl;
 			Input* i = new InputChangeSpeed(SimRate::PAUSE);
+			inputQueue.push(i);
+			i = new InputSpacebar();
 			inputQueue.push(i);
 		}
 
@@ -303,7 +318,7 @@ void Viewer::processNotice(Notice* n)
 		cout << n->getMessage() << endl;
 		//push message to messagelog
 		//update messagelog display
-		bool isPaused = static_cast<NoticeSimPause*>(n)->isPaused();
+		bool isPaused = !(mptr->isRunning());
 		if (isPaused)
 		{
 			pauseButton.setFillColor(pausedColor);
@@ -317,11 +332,15 @@ void Viewer::processNotice(Notice* n)
 	if (n->getType() == NoticeType::NOTICE_CLOSE)
 	{
 		windowptr->close();
-		if (windowptr != nullptr)
-		{
-			delete windowptr;
-			windowptr = nullptr;
-		}
+	}
+
+	if (n->getType() == NoticeType::NOTICE_SPEED_CHANGE)
+	{
+		cout << "Viewer got a NoticeSpeedChange!" << endl;
+		//change speed text here
+		time_t currRate = static_cast<NoticeSpeedChange*>(n)->getRate();
+		rateStr = "Update Rate: " + to_string(currRate);
+		rateText.setString(rateStr);
 	}
 
 	//this->updateDisplay(n); //to update the graphical display
@@ -360,6 +379,8 @@ void Viewer::updateDisplay()
 
 	windowptr->draw(clockText);
 
+	windowptr->draw(rateText);
+
 	windowptr->draw(pauseButton);
 
 	windowptr->draw(slowButton);
@@ -388,7 +409,6 @@ Input* Viewer::getInput()
 void Viewer::loop()
 {
 	//method of things to be done repeatedly
-	//for example:
 	this->pollWindow(); //check the window for any sf::Events
 	this->update(); //to check for notices in queue, parse them
 	this->updateDisplay(); //force display to redraw
