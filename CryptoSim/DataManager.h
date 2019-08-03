@@ -27,6 +27,7 @@ public:
 	void addToTotalTransactions(int delta);
 
 	int getTotalNodes();
+	void setTotalNodes(int n);
 	void addToTotalNodes(int delta);
 
 	void setBaseSimRate(time_t rate);

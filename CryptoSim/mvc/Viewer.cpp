@@ -34,6 +34,7 @@ Viewer::Viewer()
 
 	nodesText.setString(nodesStr);
 	nodesText.setFont(font);
+	nodesText.setPosition(nodesTextPos);
 
 	clockTextPos.x = 100; //arbitrary
 	clockTextPos.y = 300; //arbitrary
@@ -142,7 +143,7 @@ void Viewer::repositionUI()
 	textLength = clockText.getCharacterSize() * clockText.getString().getSize();
 	textHeight = clockText.getCharacterSize();
 	clockTextPos.x = 0 + offsetX;
-	clockTextPos.y = nodesText.y + textHeight + offsetY;
+	clockTextPos.y = nodesTextPos.y + textHeight + offsetY;
 	clockText.setPosition(clockTextPos);
 
 	//rate position
@@ -292,15 +293,18 @@ void Viewer::updateText()
 	cout << "Viewer.updateText()" << endl;
 	float crypto = mptr->getDataManager().getTotalCrypto();
 	int transacs = mptr->getDataManager().getTotalTransactions();
+	int nodes = mptr->getDataManager().getTotalNodes();
 	time_t currTime = mptr->getDataManager().getTimePassed();
 
 	string newcryptostr = cryptoStr + std::to_string(crypto);
 	string newtransacstr = transacStr + std::to_string(transacs);
 	string newclockstr = clockStr + std::to_string(currTime);
+	string newnodestr = nodesStr + std::to_string(nodes);
 
 	cryptoText.setString(newcryptostr);
 	transacText.setString(newtransacstr);
 	clockText.setString(newclockstr);
+	nodesText.setString(newnodestr);
 
 	//time_t currRate = mptr->getDataManager().getBaseSimRate();
 	//rateStr = "Update Rate: " + to_string(currRate);
@@ -404,6 +408,8 @@ void Viewer::updateDisplay()
 	windowptr->draw(cryptoText);
 
 	windowptr->draw(transacText);
+
+	windowptr->draw(nodesText);
 
 	windowptr->draw(clockText);
 

@@ -6,6 +6,7 @@ DataManager::DataManager()
 {
 	totalCrypto = 0;
 	totalTransactions = 0;
+	totalNodes = 0;
 	cryptoPerMine = 0;
 	timePassed = 0;
 }
@@ -49,6 +50,11 @@ void DataManager::addToTotalTransactions(int delta)
 int DataManager::getTotalNodes()
 {
 	return totalNodes;
+}
+
+void DataManager::setTotalNodes(int n)
+{
+	totalNodes = n;
 }
 
 void DataManager::addToTotalNodes(int delta)

@@ -15,10 +15,10 @@ void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
 	netw.addNewNodes(nodesInNetwork);
 	//printNetworkNodes(&netw);
 
-
 	//initialize the DataManager
 	manager.setCryptoPerMine(baseCryptoRate);
 	manager.setBaseSimRate(baseTimeRate);
+	manager.setTotalNodes(nodesInNetwork);
 
 	//initialize the driver
 	driver.setSimRate(manager.getBaseSimRate());
