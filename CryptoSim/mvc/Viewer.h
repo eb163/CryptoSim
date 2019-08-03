@@ -57,6 +57,10 @@ protected:
 	sf::Text transacText;
 	sf::Vector2f transacTextPos;
 
+	string nodesStr = "Nodes: ";
+	sf::Text nodesText;
+	sf::Vector2f nodesTextPos;
+
 	string clockStr = "Time: ";
 	sf::Text clockText;
 	sf::Vector2f clockTextPos;

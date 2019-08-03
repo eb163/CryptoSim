@@ -29,6 +29,12 @@ Viewer::Viewer()
 	transacText.setString(transacStr);
 	transacText.setFont(font);
 
+	nodesTextPos.x = 100;
+	nodesTextPos.y = 400;
+
+	nodesText.setString(nodesStr);
+	nodesText.setFont(font);
+
 	clockTextPos.x = 100; //arbitrary
 	clockTextPos.y = 300; //arbitrary
 
@@ -125,11 +131,18 @@ void Viewer::repositionUI()
 	transacTextPos.y = cryptoTextPos.y + textHeight + offsetY;
 	transacText.setPosition(transacTextPos);
 
+	//node counter position
+	//textLength = nodesText.getCharacterSize() * nodesText.getString().getsize();
+	textHeight = nodesText.getCharacterSize();
+	nodesTextPos.x = 0 + offsetX;
+	nodesTextPos.y = transacTextPos.y + textHeight + offsetY;
+	nodesText.setPosition(nodesTextPos);
+
 	//clock position
 	textLength = clockText.getCharacterSize() * clockText.getString().getSize();
 	textHeight = clockText.getCharacterSize();
 	clockTextPos.x = 0 + offsetX;
-	clockTextPos.y = transacTextPos.y + textHeight + offsetY;
+	clockTextPos.y = nodesText.y + textHeight + offsetY;
 	clockText.setPosition(clockTextPos);
 
 	//rate position
