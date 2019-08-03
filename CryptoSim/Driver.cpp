@@ -67,6 +67,7 @@ void Driver::takeAction()
 	switch (action)
 	{
 	case ADD_TRANSACTION: addTransaction(); break;
+	case ADD_NODE: addNewNode(); break;
 	case DO_NOTHING: cout << "Driver did nothing this cycle. " << endl;  break;
 	default: cout << "Driver did nothing this cycle. " << endl; break;
 
@@ -99,4 +100,11 @@ void Driver::addTransaction()
 	nw->getNode(n2)->addTransaction(t); //receiver
 
 	manager->addToTotalTransactions(1); //increment transaction counter
+}
+
+void Driver::addNewNode()
+{
+	cout << "Driver is adding a new Node to the Network!" << endl;
+	nw->addNewNode();
+	manager->addToTotalNodes(1);
 }

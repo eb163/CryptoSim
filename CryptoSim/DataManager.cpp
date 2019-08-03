@@ -46,6 +46,16 @@ void DataManager::addToTotalTransactions(int delta)
 	totalTransactions += delta;
 }
 
+int DataManager::getTotalNodes()
+{
+	return totalNodes;
+}
+
+void DataManager::addToTotalNodes(int delta)
+{
+	totalNodes += delta;
+}
+
 void DataManager::setBaseSimRate(time_t rate)
 {
 	baseSimRate = rate;
