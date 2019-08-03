@@ -3,7 +3,7 @@
 #include <cstdlib> //for srand() and rand()
 #include "Network.h"
 
-enum Action {DO_NOTHING = 0, ADD_TRANSACTION = 1};
+enum Action {DO_NOTHING = 0, ADD_TRANSACTION = 1, ADD_NODE = 2};
 
 class Driver
 {
@@ -15,7 +15,7 @@ private:
 	DataManager* manager = nullptr;
 
 	//list of actions which the Driver can take to operate on the Network of Nodes
-	int numberOfActions = 2;
+	int numberOfActions = 3;
 
 public:
 	Driver();
@@ -36,6 +36,7 @@ public:
 	void takeAction();
 
 	//actions which the Driver can perform on the nodes of the network
-	void addTransaction(); //currently just adds a block containing a string of data
+	void addTransaction();
+	void addNewNode();
 };
 
