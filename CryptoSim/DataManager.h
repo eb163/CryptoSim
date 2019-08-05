@@ -10,8 +10,8 @@ private:
 	int totalNodes = 0;
 	//float rateOfCrypto;		//long term goal
 	//float rateOfTransactions;	//long term goal
-	time_t baseSimRate;
-	time_t timePassed;
+	time_t baseSimRate = 0;
+	time_t timePassed = 0;
 
 public:
 	DataManager();

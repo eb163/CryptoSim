@@ -31,14 +31,19 @@ int main()
 	//TESTS
 	///////////////////////////////////////////////////
 
+
+	//unitTestTransaction();
+	//unitTestBlock();
 	//unitTestBlockchain();
 	//unitTestNode();
+	//unitTestDataManager();
 	//unitTestNetwork();
-	//unitTestDriver();
+	unitTestDriver();
 
 	//unitTestViewer();
 
-	systemTestMVC();
+	//systemTestDriver();
+	//systemTestMVC();
 
 
 	/////////////////////////////////////////////////
