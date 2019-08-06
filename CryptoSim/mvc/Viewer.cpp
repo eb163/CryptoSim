@@ -1,5 +1,82 @@
 #include "Viewer.h"
 
+void Viewer::updateBlockText()
+{
+	Blockchain chain = mptr->getBlockchain(0);
+	int chainSize = chain.getSize();
+	Block currBl = chain.getBlock(chainSize - 1);
+
+	string idstr = blockIDStr + to_string(currBl.getIndex());
+	string hashstr = blockHashStr + currBl.GetHash();
+	string prevhashstr = prevHashStr + currBl.sPrevHash;
+	string timestr = timestampStr + to_string(currBl.GetData().getTimestamp());
+	string amtstr = amountStr + to_string(currBl.GetData().getAmount());
+	string senderstr = senderStr + currBl.GetData().getSenderID();
+	string receiverstr = receiverStr + currBl.GetData().getReceiverID();
+
+	blockIDText.setString(idstr);
+	blockHashText.setString(hashstr);
+	prevHashText.setString(prevhashstr);
+	timestampText.setString(timestr);
+	amountText.setString(amtstr);
+	senderText.setString(senderstr);
+	receiverText.setString(receiverstr);
+}
+
+void Viewer::drawBlockText()
+{
+	//for each block to be displayed
+	//update text pos
+	//if bool to display this index of block is true, print to screen
+
+	float startX = videomodeptr->width / 2;
+	float startY = 0;
+
+	float offsetX = 10;
+	float offsetY = 10;
+	sf::Vector2f prevTextPos = {startX, startY};
+	sf::Vector2f curTextPos;
+
+	//loop starts here
+	curTextPos.x = prevTextPos.x;
+	curTextPos.y = prevTextPos.y + blockDispCharSize + offsetY;
+	//set all positions
+	blockIDText.setPosition(curTextPos);
+	curTextPos.y += blockDispCharSize + offsetY;
+
+	blockHashText.setPosition(curTextPos);
+	curTextPos.y += blockDispCharSize + offsetY;
+
+	prevHashText.setPosition(curTextPos);
+	curTextPos.y += blockDispCharSize + offsetY;
+
+	timestampText.setPosition(curTextPos);
+	curTextPos.y += blockDispCharSize + offsetY;
+
+	amountText.setPosition(curTextPos);
+	curTextPos.y += blockDispCharSize + offsetY;
+
+	senderText.setPosition(curTextPos);
+	curTextPos.y += blockDispCharSize + offsetY;
+
+	receiverText.setPosition(curTextPos);
+	curTextPos.y += blockDispCharSize + offsetY;
+
+	//reset prevTextPos
+	prevTextPos = curTextPos;
+
+	//loop repeats
+
+	//draw loop starts
+	windowptr->draw(blockIDText);
+	windowptr->draw(blockHashText);
+	windowptr->draw(prevHashText);
+	windowptr->draw(timestampText);
+	windowptr->draw(amountText);
+	windowptr->draw(senderText);
+	windowptr->draw(receiverText);
+}
+
 Viewer::Viewer()
 {
 	mptr = nullptr;
@@ -76,6 +153,23 @@ Viewer::Viewer()
 	speedButton.setRadius(speedButtonSize);
 	speedButton.setPosition(speedButtonPos);
 	speedButton.rotate(speedButtonRotation);
+
+	//for each of 6 text objs in array,
+	//set char size, and font
+	blockIDText.setCharacterSize(blockDispCharSize);
+	blockIDText.setFont(font);
+	blockHashText.setCharacterSize(blockDispCharSize);
+	blockHashText.setFont(font);
+	prevHashText.setCharacterSize(blockDispCharSize);
+	prevHashText.setFont(font);
+	timestampText.setCharacterSize(blockDispCharSize);
+	timestampText.setFont(font);
+	amountText.setCharacterSize(blockDispCharSize);
+	amountText.setFont(font);
+	senderText.setCharacterSize(blockDispCharSize);
+	senderText.setFont(font);
+	receiverText.setCharacterSize(blockDispCharSize);
+	receiverText.setFont(font);
 
 	repositionUI();
 }
@@ -420,6 +514,10 @@ void Viewer::updateDisplay()
 	windowptr->draw(slowButton);
 
 	windowptr->draw(speedButton);
+
+	updateBlockText();
+
+	drawBlockText();
 
 	windowptr->display();
 }

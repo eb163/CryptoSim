@@ -18,6 +18,11 @@ Block::Block(uint32_t nIndexIn, Transaction sDataIn)
 
 }
 
+uint32_t Block::getIndex()
+{
+	return _nIndex;
+}
+
 string Block::GetHash() {
     return _sHash;
 }

@@ -87,6 +87,39 @@ protected:
 	//color?
 	sf::CircleShape speedButton;
 
+	//block display
+	//displays last 6 transactions on screen
+	//using parallel arrays
+	const int blockDispLength = 6;
+	const int blockDispCharSize = 24;
+
+	//block data:
+	//id
+	string blockIDStr = "Block: ";
+	sf::Text blockIDText;
+	//hash
+	string blockHashStr = "Hash: ";
+	sf::Text blockHashText;
+	//prev hash
+	string prevHashStr = "Prev Hash: ";
+	sf::Text prevHashText;
+	//transaction timestamp
+	string timestampStr = "Time: ";
+	sf::Text timestampText;
+	//transaction amount
+	string amountStr = "Amount: ";
+	sf::Text amountText;
+	//transaction sender
+	string senderStr = "Sender: ";
+	sf::Text senderText;
+	//transaction receiver
+	string receiverStr = "Receiver: ";
+	sf::Text receiverText;
+
+	void updateBlockText();
+
+	void drawBlockText();
+
 public:
 	Viewer();
 	~Viewer();

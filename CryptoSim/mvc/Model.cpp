@@ -182,3 +182,8 @@ void Model::simUpdate(time_t deltaT)
 	driver.pollForAction(); //driver checks time and decides whether or not to act on sim system
 	
 }
+
+Blockchain Model::getBlockchain(int index)
+{
+	return netw.getNode(index)->getBlockchain();
+}

@@ -13,6 +13,8 @@ public:
  
     //Block(uint32_t nIndexIn, const string &sDataIn);
 	Block(uint32_t nIndexIn, Transaction sDataIn);
+
+	uint32_t getIndex();
  
     string GetHash();
 	//string GetData(); //to easily check if blocks are duplicates of data

@@ -60,6 +60,8 @@ public:
 	DataManager getDataManager();
 
 	void simUpdate(time_t deltaT);
+
+	Blockchain getBlockchain(int index);
 };
 
 #endif
