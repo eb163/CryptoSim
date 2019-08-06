@@ -4,7 +4,7 @@ void Viewer::updateBlockText()
 {
 	Blockchain chain = mptr->getBlockchain(0);
 	int chainSize = chain.getSize();
-	Block currBl = chain.getBlock(chainSize - 1);
+	Block currBl = chain.GetLastBlock();
 
 	string idstr = blockIDStr + to_string(currBl.getIndex());
 	string hashstr = blockHashStr + currBl.GetHash();
@@ -29,8 +29,8 @@ void Viewer::drawBlockText()
 	//update text pos
 	//if bool to display this index of block is true, print to screen
 
-	float startX = videomodeptr->width / 2;
-	float startY = 0;
+	float startX = 0;
+	float startY = videomodeptr->height / 4;
 
 	float offsetX = 10;
 	float offsetY = 10;
