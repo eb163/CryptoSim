@@ -22,20 +22,28 @@ void printDataManager(DataManager& m);
 
 void printNetworkNodes(Network* nw);
 
+void printTransaction(Transaction& t);
+
+void unitTestTransaction();
+
+void unitTestBlock();
+
 void unitTestBlockchain();
 
 void unitTestNode();
 
 void unitTestNetwork();
 
-void unitTestDriver();
-
 void unitTestDataManager();
+
+void unitTestDriver();
 
 void unitTestViewer();
 
 //void unitTestModel();
 
 //void unitTestController();
+
+void systemTestDriver();
 
 void systemTestMVC();

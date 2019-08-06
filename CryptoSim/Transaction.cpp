@@ -4,6 +4,8 @@
 Transaction::Transaction()
 {
 	canEdit = true;
+	timestamp = 0;
+	cryptoAmount = 0;
 }
 
 Transaction::Transaction(time_t time, float amt, std::string sender, std::string receiver)

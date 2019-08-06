@@ -33,29 +33,130 @@ void printDataManager(DataManager & m)
 	cout << "DataManager.totalCrypto = " << m.getTotalCrypto() << endl;
 	cout << "DataManager.totalTransactions = " << m.getTotalTransactions() << endl;
 	cout << "DataManager.cryptoPerMine = " << m.getCryptoPerMine() << endl;
+	cout << "DataManager.totalNodes = " << m.getTotalNodes() << endl;
+	cout << "DataManager.timeRate = " << m.getBaseSimRate() << endl;
+	cout << "DataManager.timePassed = " << m.getTimePassed() << endl;
+}
+
+void printTransaction(Transaction& t)
+{
+	cout << "Transaction: " << &t << endl;
+	cout << "Transaction.timestamp = " << t.getTimestamp() << endl;
+	cout << "Transaction.amount = " << t.getAmount() << endl;
+	cout << "Transaction.sender = " << t.getSenderID() << endl;
+	cout << "Transaction.receiver = " << t.getReceiverID() << endl;
+}
+
+void unitTestTransaction()
+{
+	cout << "Running unitTestTransaction \n----------------------------------------" << endl;
+
+	//test data
+	time_t timestamp = time(0);
+	float amt = 5.56;
+	string s = "Node A";
+	string r = "Node B";
+
+	cout << "Test Data: Timestamp = " << timestamp << " | Amount = " << amt << " | Sender = " << s << " | Receiver = " << r << endl;
+	cout << "Creating empty Transaction...";
+	Transaction t;
+	cout << " done.\n" << endl;
+
+	printTransaction(t);
+	
+	cout << "\nSetting data attributes to test data...";
+	t.setTimestamp(timestamp);
+	t.setAmount(amt);
+	t.setSenderID(s);
+	t.setReceiverID(r);
+	cout << " done.\n" << endl;
+
+	printTransaction(t);
+
+	cout << "\nSetting Transaction to uneditable state...";
+	t.makeConstant();
+	cout << " done.\n" << endl;
+
+	cout << "Attmepting to modify Transaction.\n" << endl;
+	t.setTimestamp(0);
+	t.setAmount(amt - 3);
+	t.setSenderID(r);
+	t.setReceiverID(s);
+
+	printTransaction(t);
+
+	cout << "\nunitTestTransaction completed" << endl;
+	pause();
+}
+
+void unitTestBlock()
+{
+	cout << "Running unitTestBlock \n----------------------------------------" << endl;
+
+	//test data
+	time_t stamp = 0; //by having timestamp be a constant value, hash should be a constant value
+	float amt = 328.99;
+	string s = "Node A";
+	string r = "Node B";
+	Transaction t(stamp, amt, s, r);
+
+	cout << "Test Data: Time: " << stamp << " | Amount: " << amt << " | Sender: " << s << " | Receiver: " << r << endl;
+	cout << "\nCreating a Block holding the Transaction data: ";
+	Block b(1, t);
+	b.MineBlock(1); //to generate hash
+	cout << " done.\n" << endl;
+
+	cout << "Block hash: " << b.GetHash() << endl;
+	printBlockData(b);
+
+	cout << "\nCreating a second Block with the same data" << endl;
+	Block b2(1, t);
+	b2.MineBlock(1); //to generate hash
+	cout << "Block 2 hash: " << b2.GetHash() << endl;
+
+	cout << "\nCopying a Block from Block 1..." << endl;
+	Block b3 = b;
+	printBlockData(b3);
+
+	cout << "\nunitTestBlock completed" << endl;
+	pause();
 }
 
 void unitTestBlockchain()
 {
-	cout << "Testing a Blockchain..." << endl;
+	cout << "Running unitTestBlockchain \n----------------------------------------" << endl;
 
-	Transaction t1(time(0), 1.0, "B2", "B1"), t2(time(0), 2.0, "B1", "B2"), t3(time(0), 3.0, "B1", "B3");
+	time_t time1 = 1111, time2 = 2222, time3 = 3333;
+	float amt1 = 1.0, amt2 = 2.0, amt3 = 3.0;
+	string block1 = "B1", block2 = "B2", block3 = "B3";
+	Transaction t1(time1, amt1, block2, block1), t2(time2, amt2, block1, block2), t3(time3, amt3, block1, block3);
 	Block b1(1, t1), b2(2, t2), b3(3, t3);
+
+	cout << "\nTest data: " << endl;
+	cout << "Block 1: Time: " << time1 << " | Amount: " << amt1 << " | Sender: " << block2 << " | Receiver: " << block1 << endl;
+	cout << "Block 2: Time: " << time2 << " | Amount: " << amt2 << " | Sender: " << block1 << " | Receiver: " << block2 << endl;
+	cout << "Block 3: Time: " << time3 << " | Amount: " << amt3 << " | Sender: " << block1 << " | Receiver: " << block3 << endl;
 
 	//demonstrating the blockchain
 	Blockchain chain;
-	cout << "Created a Blockchain" << endl;
+	cout << "\nCreated a Blockchain" << endl;
+	cout << "Blockchain size: " << chain.getSize() << " (should be 1)" << endl;
+	
 	chain.AddBlock(b1);
 	chain.AddBlock(b2);
 	chain.AddBlock(b3);
 
+	cout << "\nAdded blocks to chain... (New size should be 4)" << endl;
+
 	printBlockchainContents(chain);
 
+	cout << "\nunitTestBlockchain completed" << endl;
 	pause();
 }
 
 void unitTestNode()
 {
+	cout << "Running unitTestNode \n----------------------------------------" << endl;
 	Node n1, n2, n3;
 	n1.setID("n1");
 	n2.setID("n2");
@@ -71,9 +172,11 @@ void unitTestNode()
 	cout << "Is n2 connected to n1? " << n2.isConnected(&n1) << endl;
 	pause();
 
-
 	cout << "Testing Node updating Blockchains and Notifications..." << endl;
-	Transaction t1(time(0), 1.0, "B2", "B1"), t2(time(0), 2.0, "B1", "B2"), t3(time(0), 3.0, "B1", "B3");
+	time_t time1 = 1111, time2 = 2222, time3 = 3333;
+	float amt1 = 1.0, amt2 = 2.0, amt3 = 3.0;
+	string block1 = "B1", block2 = "B2", block3 = "B3";
+	Transaction t1(time1, amt1, block2, block1), t2(time2, amt2, block1, block2), t3(time3, amt3, block1, block3);
 	Block b1(1, t1), b2(2, t2), b3(3, t3);
 	Blockchain masterchain;
 	masterchain.AddBlock(b1);
@@ -84,7 +187,12 @@ void unitTestNode()
 	cout << n2.getID() << " = " << &n2 << endl;
 	cout << n3.getID() << " = " << &n3 << endl;
 
-	cout << "Printing master blockchain..." << endl;
+	cout << "\nTest data: " << endl;
+	cout << "Block 1: Time: " << time1 << " | Amount: " << amt1 << " | Sender: " << block2 << " | Receiver: " << block1 << endl;
+	cout << "Block 2: Time: " << time2 << " | Amount: " << amt2 << " | Sender: " << block1 << " | Receiver: " << block2 << endl;
+	cout << "Block 3: Time: " << time3 << " | Amount: " << amt3 << " | Sender: " << block1 << " | Receiver: " << block3 << endl;
+
+	cout << "\nPrinting master blockchain..." << endl;
 	printBlockchainContents(masterchain);
 	pause();
 
@@ -95,17 +203,18 @@ void unitTestNode()
 	n2.addTransaction(t2);
 	n3.addTransaction(t3);
 
-	cout << "Printing blockchains in each Node..." << endl;
+	cout << "\nPrinting blockchains in each Node..." << endl;
 	cout << "Node 1:" << endl;
 	printBlockchainContents(n1.getBlockchain());
-	pause();
-	cout << "Node 2:" << endl;
-	printBlockchainContents(n2.getBlockchain());
-	pause();
-	cout << "Node 3:" << endl;
-	printBlockchainContents(n3.getBlockchain());
-	pause();
 
+	cout << "\nNode 2:" << endl;
+	printBlockchainContents(n2.getBlockchain());
+	
+	cout << "\nNode 3:" << endl;
+	printBlockchainContents(n3.getBlockchain());
+
+	cout << "\nunitTestNode completed" << endl;
+	pause();
 }
 
 void printNetworkNodes(Network* nw)
@@ -147,6 +256,33 @@ void unitTestNetwork()
 
 void unitTestDriver()
 {
+	cout << "Running unitTestDriver \n--------------------------------------" << endl;
+	
+	//test data
+	time_t rate = 12;
+	time_t iteration1 = rate * 1;
+	time_t iteration2 = rate * 2;
+
+	cout << "Test data: Time Rate = " << rate << endl;
+
+	cout << "Creating an empty Driver" << endl;
+	Driver dr;
+	cout << "Driver.timeSinceLastAction = " << dr.getTimeSinceLastAction() << endl;
+
+	cout << "\nCalling driver.modifyTimeSinceLastAction(" << rate <<") " << endl;
+	dr.modifyTimeSinceLastAction(rate);
+	cout << "Driver.timeSinceLastAction = " << dr.getTimeSinceLastAction() << "(should be: "<< iteration1 << ")" << endl;
+
+	cout << "\nCalling driver.modifyTimeSinceLastAction(" << rate << ") " << endl;
+	dr.modifyTimeSinceLastAction(rate);
+	cout << "Driver.timeSinceLastAction = " << dr.getTimeSinceLastAction() << "(should be: " << iteration2 << ")" << endl;
+
+	cout << "\nunitTestDriver completed" << endl;
+	pause();
+}
+
+void systemTestDriver()
+{
 	cout << "Testing Driver methods..." << endl;
 
 	DataManager manager;
@@ -178,7 +314,44 @@ void unitTestDriver()
 
 void unitTestDataManager()
 {
+	cout << "Running unitTestDataManager \n-------------------------------------" << endl;
 
+	//test data
+	float initAmount = 11.25;
+	int initTransact = 0;
+	int initNodes = 3, deltaNodes = 2;
+	float cryptoRate = 3.5;
+	time_t timeRate = 10;
+
+	float endAmount = initAmount + cryptoRate;
+	int endNodes = initNodes + deltaNodes;
+	int endTransact = 1;
+
+	cout << "\nTest Data: Initial Amount: " << initAmount << " | Initial Transactions: " << initTransact << " | Initial Nodes: " << initNodes
+		<< "\nCryptoRate: " << cryptoRate << " | New Nodes: " << deltaNodes << " | Time Rate: " << timeRate
+		<< "\nEnd Amount: " << endAmount << " | End Transactions: " << endTransact << " | End Nodes: " << endNodes << endl;
+
+	DataManager mgr;
+	cout << "\nCreated empty DataManager" << endl;
+	printDataManager(mgr);
+
+	cout << "\nSetting DataManager initial values" << endl;
+	mgr.setBaseSimRate(timeRate);
+	mgr.setCryptoPerMine(cryptoRate);
+	mgr.setTotalNodes(initNodes);
+	mgr.addToTotalCrypto(initAmount);
+	mgr.addToTotalTransactions(initTransact);
+	printDataManager(mgr);
+
+	cout << "\nModifying DataManager values" << endl;
+	mgr.addToTotalCrypto(cryptoRate);
+	mgr.addToTotalNodes(deltaNodes);
+	mgr.addToTotalTransactions(1);
+	mgr.addToTimePassed(timeRate);
+	printDataManager(mgr);
+
+	cout << "\nunitTestDataManager completed" << endl;
+	pause();
 }
 
 void unitTestViewer()
