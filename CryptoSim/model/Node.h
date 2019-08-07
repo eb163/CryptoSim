@@ -4,7 +4,7 @@
 #include <cmath>
 #include "Transaction.h"
 #include "blockchain/Blockchain.h"
-#include "mvc/debug.h"
+#include "../debug.h"
 #include "DataManager.h"
 
 

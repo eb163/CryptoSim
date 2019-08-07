@@ -1,5 +1,5 @@
 #include "Model.h"
-#include "Viewer.h"
+#include "../viewer/Viewer.h"
 #include "../tests.h"
 
 Model::Model()

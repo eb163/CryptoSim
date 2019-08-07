@@ -1,7 +1,7 @@
 #pragma once
 #include "Event.h"
-#include "Input.h"
-#include "Notice.h"
+#include "../viewer/Input.h"
+#include "../viewer/Notice.h"
 
 class ModelInterface
 {

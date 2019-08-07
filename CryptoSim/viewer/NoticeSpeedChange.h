@@ -1,5 +1,5 @@
 #pragma once
-#include "mvc\Notice.h"
+#include "Notice.h"
 class NoticeSpeedChange :
 	public Notice
 {

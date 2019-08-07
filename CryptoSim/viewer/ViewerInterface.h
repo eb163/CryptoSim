@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Event.h"
+#include "../model/Event.h"
 #include "Input.h"
 #include "Notice.h"
 

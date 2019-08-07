@@ -2,8 +2,8 @@
 #ifndef VIEWER_H
 #define VIEWER_H
 #include "ViewerInterface.h"
-#include "Controller.h"
-#include "Model.h"
+#include "../controller/Controller.h"
+#include "../model/Model.h"
 #include <queue>
 #include <exception>
 #include <ctime>
@@ -14,16 +14,16 @@
 #include "SFML/Network.hpp"
 #include "SFML/System.hpp"
 
-#include "../InputClose.h"
-#include "../InputSpacebar.h"
-#include "../InputChangeSpeed.h"
+#include "InputClose.h"
+#include "InputSpacebar.h"
+#include "InputChangeSpeed.h"
 
-#include "../NoticeClose.h"
-#include "../NoticeSimChange.h"
-#include "../NoticeSimPause.h"
-#include "../NoticeSpeedChange.h"
+#include "NoticeClose.h"
+#include "NoticeSimChange.h"
+#include "NoticeSimPause.h"
+#include "NoticeSpeedChange.h"
 
-#include "debug.h"
+#include "../debug.h"
 
 class Controller; //avoids recursive includes
 

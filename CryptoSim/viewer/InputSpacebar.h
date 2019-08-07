@@ -1,5 +1,5 @@
 #pragma once
-#include "mvc\Input.h"
+#include "Input.h"
 class InputSpacebar :
 	public Input
 {

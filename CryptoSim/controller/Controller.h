@@ -4,13 +4,13 @@
 #include "ControllerInterface.h"
 #include <queue>
 #include <ctime>
-#include "Model.h"
-#include "Viewer.h"
-#include "debug.h"
+#include "../model/Model.h"
+#include "../viewer/Viewer.h"
+#include "../debug.h"
 
-#include "../EventClose.h"
-#include "../EventPause.h"
-#include "../EventSpeedChange.h"
+#include "../model/EventClose.h"
+#include "../model/EventPause.h"
+#include "../model/EventSpeedChange.h"
 
 using std::queue;
 

@@ -1,5 +1,0 @@
-who does what?
-Mason - Model
-Eric - Model, Viewer, Controller, docs
-Cynthia - Viewer, Controller
-Taylor - Controller, docs

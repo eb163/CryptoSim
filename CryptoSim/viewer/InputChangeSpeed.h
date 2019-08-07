@@ -1,6 +1,6 @@
 #pragma once
-#include "mvc\Input.h"
-#include "SimRates.h"
+#include "Input.h"
+#include "../model/SimRates.h"
 
 class InputChangeSpeed :
 	public Input

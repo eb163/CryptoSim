@@ -15,178 +15,169 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mvc\Controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mvc\Event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mvc\Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mvc\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mvc\Notice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mvc\Viewer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="blockchain\Block.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="blockchain\Blockchain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="blockchain\sha256.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transaction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Driver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Network.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DataManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputClose.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputSpacebar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputChangeSpeed.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EventClose.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EventPause.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EventSpeedChange.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NoticeClose.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NoticeSimChange.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NoticeSimPause.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NoticeSpeedChange.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <None Include="ClassDiagram8-6-2019.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mvc\Controller.h">
+    <ClInclude Include="model\DataManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\ControllerInterface.h">
+    <ClInclude Include="model\Driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\debug.h">
+    <ClInclude Include="model\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\Event.h">
+    <ClInclude Include="model\EventClose.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\Input.h">
+    <ClInclude Include="model\EventPause.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\Model.h">
+    <ClInclude Include="model\EventSpeedChange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\ModelInterface.h">
+    <ClInclude Include="model\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\Notice.h">
+    <ClInclude Include="model\ModelInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\Viewer.h">
+    <ClInclude Include="model\Network.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mvc\ViewerInterface.h">
+    <ClInclude Include="model\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blockchain\Block.h">
+    <ClInclude Include="model\SimRates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blockchain\Blockchain.h">
+    <ClInclude Include="model\Transaction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blockchain\sha256.h">
+    <ClInclude Include="model\blockchain\Block.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Transaction.h">
+    <ClInclude Include="model\blockchain\Blockchain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Driver.h">
+    <ClInclude Include="model\blockchain\sha256.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Node.h">
+    <ClInclude Include="viewer\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\InputChangeSpeed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\InputClose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\InputSpacebar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\Notice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\NoticeClose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\NoticeSimChange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\NoticeSimPause.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\NoticeSpeedChange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\Viewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="viewer\ViewerInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\ControllerInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Network.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DataManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputClose.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputSpacebar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputChangeSpeed.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimRates.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventClose.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventPause.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventSpeedChange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NoticeSimChange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NoticeSimPause.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NoticeClose.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NoticeSpeedChange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram8-6-2019.cd" />
+    <ClCompile Include="model\DataManager.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Driver.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Event.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\EventClose.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\EventPause.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\EventSpeedChange.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Model.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Network.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Node.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Transaction.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\InputChangeSpeed.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\InputClose.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\InputSpacebar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\Notice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\NoticeClose.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\NoticeSimChange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\NoticeSimPause.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\NoticeSpeedChange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="viewer\Viewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="controller\Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

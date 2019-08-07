@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Input.h"
+#include "../viewer/Input.h"
 
 class ControllerInterface
 {

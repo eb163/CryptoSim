@@ -1,5 +1,5 @@
 #pragma once
-#include "mvc\Event.h"
+#include "Event.h"
 #include "SimRates.h"
 class EventSpeedChange :
 	public Event

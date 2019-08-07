@@ -4,16 +4,15 @@
 #include "ModelInterface.h"
 #include <queue>
 #include <cmath>
-#include "debug.h"
-//#include "Viewer.h"
+#include "../debug.h"
 
-#include "../Driver.h"
-#include "../Network.h"
-#include "../DataManager.h"
+#include "Driver.h"
+#include "Network.h"
+#include "DataManager.h"
 
-#include "../EventClose.h"
-#include "../EventPause.h"
-#include "../EventSpeedChange.h"
+#include "EventClose.h"
+#include "EventPause.h"
+#include "EventSpeedChange.h"
 
 class Viewer; //avoids recursive includes
 

@@ -1,16 +1,18 @@
 #pragma once
-#include "blockchain\Block.h"
-#include "blockchain\Blockchain.h"
-#include "Node.h"
-#include "Driver.h"
-#include "mvc\debug.h"
-#include "mvc\Viewer.h"
+#include "model\blockchain\Block.h"
+#include "model\blockchain\Blockchain.h"
+#include "model\Node.h"
+#include "model\Driver.h"
+#include "debug.h"
+#include "viewer\Viewer.h"
 
-#include "SFML/Main.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/Graphics.hpp"
-#include "SFML/Network.hpp"
-#include "SFML/System.hpp"
+/*
+#include "viewer/SFML/Main.hpp"
+#include "viewer/SFML/Window.hpp"
+#include "viewer/SFML/Graphics.hpp"
+#include "viewer/SFML/Network.hpp"
+#include "viewer/SFML/System.hpp"
+*/
 
 char pause();
 
