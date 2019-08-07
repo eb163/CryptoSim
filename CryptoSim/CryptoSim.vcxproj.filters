@@ -187,6 +187,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram8-6-2019.cd" />
   </ItemGroup>
 </Project>

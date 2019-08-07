@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Block" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAEAAICEAAAEAAAAAAAOAAAAAAAAAACAAIAQAAAAAA=</HashCode>
+      <FileName>blockchain\Block.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blockchain" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAIAAAAABAAAiAAAAAAAAAAAAAAAABAAAAgA=</HashCode>
+      <FileName>blockchain\Blockchain.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SHA256" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQASBAAAAAAAAQAAAAAAAQAgEQAIAAAAAAAAEAAA=</HashCode>
+      <FileName>blockchain\sha256.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoticeClose" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NoticeClose.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DataManager" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAEAAEAAAAQAAABECAAiFCAAAkAAIAgAiAAAAgY=</HashCode>
+      <FileName>DataManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Driver" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIIAAABQAAAAAAAAAAhAACAkAAAggQAEAgAIAAQBAAA=</HashCode>
+      <FileName>Driver.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventClose" Collapsed="true">
+    <Position X="0.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventClose.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventPause" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAEAAAAAAAAAA=</HashCode>
+      <FileName>EventPause.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventSpeedChange" Collapsed="true">
+    <Position X="5.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAECAAAAAAGAAQ=</HashCode>
+      <FileName>EventSpeedChange.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputChangeSpeed" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAQAAAAAQAAAAAAAAAAAAECAU=</HashCode>
+      <FileName>InputChangeSpeed.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputClose" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>InputClose.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputSpacebar" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAEAAA=</HashCode>
+      <FileName>InputSpacebar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Controller" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIABIwAgTABAEAAAgAABAAgAECIACAAAGAAAIAA=</HashCode>
+      <FileName>mvc\Controller.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControllerInterface" Collapsed="true">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIgAASABAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>mvc\ControllerInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Event" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAARABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>mvc\Event.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Input" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAARABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>mvc\Input.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model" Collapsed="true">
+    <Position X="8.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAggAAAAABABAEAAAgACEACgAAAICCAhAIBAEIAQ=</HashCode>
+      <FileName>mvc\Model.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ModelInterface" Collapsed="true">
+    <Position X="8.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAEAAAAAAAACAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>mvc\ModelInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Notice" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAgAAAACAARABAAAAAAQAAAAgAAA=</HashCode>
+      <FileName>mvc\Notice.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Viewer" Collapsed="true">
+    <Position X="8.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>A0oAAAUEgwGMDEoDJQgIAgBhSbAAgaDgCQISLLQFUKY=</HashCode>
+      <FileName>mvc\Viewer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ViewerInterface" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAQAACAAAAAAAAAAAACAAAIAAAAAQAAAEAAA=</HashCode>
+      <FileName>mvc\ViewerInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Network" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAIAAAAAAAAAAAgAEAAAAABAAAAABAAQBIAA=</HashCode>
+      <FileName>Network.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Node" Collapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAIAAQACAAgACAAAAAQCAsAAAAAABAKDACBAUACAY=</HashCode>
+      <FileName>Node.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoticeSimChange" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAIAAAAAAgAAABAAAAAAAAQgACAGwAA=</HashCode>
+      <FileName>NoticeSimChange.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoticeSimPause" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAABEAAAAAAAAAAAAAAAAAAAAAAAAMAA=</HashCode>
+      <FileName>NoticeSimPause.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NoticeSpeedChange" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAEAAAAgAAAAAEAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>NoticeSpeedChange.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transaction" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAACAAAAIAIBDQAAEAgAAAAAIAAAAFAEAgBA=</HashCode>
+      <FileName>Transaction.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Action" Collapsed="true">
+    <Position X="11" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Driver.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="EventType" Collapsed="true">
+    <Position X="12.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAABAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>mvc\Event.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InputType" Collapsed="true">
+    <Position X="14.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAEAgAA=</HashCode>
+      <FileName>mvc\Input.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="NoticeType" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>mvc\Notice.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SimRate" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAJAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SimRates.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
