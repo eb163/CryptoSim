@@ -416,6 +416,92 @@ void unitTestViewer()
 	}
 }
 
+void unitTestModel()
+{
+	cout << "Executing unitTestModel()\n----------------------------" << endl;
+
+	//Events to test
+	Event* pauseptr = new EventPause();
+	Event* speedptr = nullptr;
+	Event* closeptr = new EventClose();
+
+	Model m;
+
+	//EventPause (confirm that model is paused)
+	cout << "Model.running = " << m.isRunning() << " (should be 1) " << endl;
+
+	cout << "\nPausing Model...";
+	m.takeEvent(pauseptr);
+	m.update();
+	cout << " done." << endl;
+
+	cout << "Model.running = " << m.isRunning() << " (should be 0) " << endl;
+
+	pauseptr = new EventPause();
+
+	//EventPause again (confirm that model is unpaused)
+	cout << "\nNow unpausing Model..." << endl;
+	m.takeEvent(pauseptr);
+	m.update();
+	cout << "...done." << endl;
+
+	cout << "Model.running = " << m.isRunning() << " (should be 1) " << endl;
+
+	//EventSpeedChange(HIGH speed) (confirm that model rate is set to high speed)
+
+	speedptr = new EventSpeedChange(SimRate::SPEED);
+	cout << "\nIncreasing Model speed..." << endl;
+	m.takeEvent(speedptr);
+	m.update();
+	cout << "...done." << endl;
+
+	//EventSpeedChange(LOW speed) (confirm that model rate is set to low speed)
+
+	speedptr = new EventSpeedChange(SimRate::SLOW);
+	cout << "\nDecreasing Model speed..." << endl;
+	m.takeEvent(speedptr);
+	m.update();
+	cout << "..done." << endl;
+
+	//EventClose (confirm that a close notice is sent out)
+
+	cout << "unitTestModel() ending..." << endl;
+	pause();
+}
+
+void unitTestController()
+{
+	cout << "Executing unitTestModel()\n----------------------------" << endl;
+
+	Controller ctrl;
+
+	//data to test:
+	Input* pauseptr = new InputSpacebar();
+	Input* speedPtr = nullptr;
+	Input* closeptr = new InputClose();
+
+	cout << "\nTesting InputSpacebar...Controller should produce an EventPause type Event." << endl;
+	ctrl.parseInput(pauseptr);
+
+	cout << "\nTesting InputSpeedChange(HIGH)...Controller should produce an EventSpeedChange type event." << endl;
+	speedPtr = new InputChangeSpeed(SimRate::SPEED);
+	ctrl.parseInput(speedPtr);
+
+	cout << "\nTesting InputSpeedChange(LOW)...Controller should produce an EventSpeedChange type event." << endl;
+	speedPtr = new InputChangeSpeed(SimRate::SLOW);
+	ctrl.parseInput(speedPtr);
+
+	cout << "\nTesting InputSpeedChange(PAUSE)...Controller should produce an EventSpeedChange type event." << endl;
+	speedPtr = new InputChangeSpeed(SimRate::PAUSE);
+	ctrl.parseInput(speedPtr);
+
+	cout << "\nTesting InputClose...Controller should produce an EventClose." << endl;
+	ctrl.parseInput(closeptr);
+
+	cout << "\nunitTestModel() ending..." << endl;
+	pause();
+}
+
 void connect(Model* m, Viewer* view, Controller* ctrl)
 {
 	ctrl->connectModel(m);
@@ -438,15 +524,10 @@ void systemTestMVC()
 
 	//test Viewer parsing inputs and sending them to Controller and Model
 
-	time_t pollStart = 0;
-	time_t pollCurr = 0;
-	time_t pollStop = 1;
-	time_t pollDiff = 0;
-
 	while (v->isOpen())
 	{
 		v->updateDisplay();
-		bool input = false, timeout = false;
+		//bool input = false, timeout = false;
 		//v->pollWindow();
 		v->loop();
 		c->loop();

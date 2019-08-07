@@ -4,6 +4,8 @@
 
 Model::Model()
 {
+	running = true;
+	vptr = nullptr;
 }
 
 void Model::init(int nodesInNetwork, float baseCryptoRate, time_t baseTimeRate)
@@ -44,7 +46,10 @@ void Model::connectViewer(Viewer* v)
 
 void Model::notifyViewer(Notice* n)
 {
-	vptr->takeNotice(n);
+	if (vptr != nullptr)
+	{
+		vptr->takeNotice(n);
+	}
 }
 
 void Model::updateModel(Event* e)
@@ -121,7 +126,7 @@ void Model::updateModel(Event* e)
 
 void Model::takeEvent(Event* e)
 {
-	cout << "Model.takeInput()" << endl;
+	cout << "Model.takeEvent()" << endl;
 	eventsQueue.push(e);
 }
 
@@ -135,7 +140,14 @@ void Model::update()
 		eventsQueue.pop();
 		
 		//update the model data
-		updateModel(e);
+		if (e != nullptr)
+		{
+			updateModel(e);
+		}
+		else
+		{
+			cout << "Current event pointer = " << 0 << endl;
+		}
 
 		//notices are created and queued in updateModel
 
@@ -153,6 +165,13 @@ void Model::update()
 		noticeQueue.pop();
 		notifyViewer(n);
 	}
+}
+
+Notice * Model::debugNotice()
+{
+	Notice* n = noticeQueue.front();
+	noticeQueue.pop();
+	return n;
 }
 
 bool Model::isRunning()

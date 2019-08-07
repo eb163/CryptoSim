@@ -48,65 +48,67 @@ bool Controller::isRunning()
 	return running;
 }
 
-void Controller::parseInput()
+void Controller::parseInput(Input* i)
 {
 	cout << "Controller.parseInput()" << endl;
-	while (inputQueue.empty() == false)
+	cout << "Controller is parsing an input..." << endl;
+	Event* e = nullptr; 
+
+	//parse Input here
+	//close Input
+	if (i->getType() == InputType::INPUT_CLOSE)
 	{
-		cout << "Controller is parsing an input..." << endl;
-		Event* e = nullptr; 
-		Input* i = inputQueue.front();
-		inputQueue.pop();
+		cout << "Controller got an InputClose" << endl;
+		e = new EventClose();
+	}
 
-		//parse Input here
-		//close Input
-		if (i->getType() == InputType::INPUT_CLOSE)
+	//spacebar input
+	if (i->getType() == InputType::INPUT_SPACEBAR)
+	{
+		cout << "Controller got an InputSpacebar" << endl;
+		e = new EventPause();
+	}
+
+	//speed change input
+	if (i->getType() == InputType::INPUT_SPEED_CHANGE)
+	{
+		cout << "Controller got an InputSpeedChange" << endl;
+		bool incr = static_cast<InputChangeSpeed*>(i)->isIncrease();
+		bool decr = static_cast<InputChangeSpeed*>(i)->isDecrease();
+		cout << "SpeedChange is an increase: " << incr << endl;
+		cout << "SpeedChange is a decrease: " << decr << endl;
+		if (incr)
 		{
-			cout << "Controller got an InputClose" << endl;
-			e = new EventClose();
+			e = new EventSpeedChange(SimRate::SPEED);
 		}
-
-		//spacebar input
-		if (i->getType() == InputType::INPUT_SPACEBAR)
+		else if (decr)
 		{
-			cout << "Controller got an InputSpacebar" << endl;
-			e = new EventPause();
+			e = new EventSpeedChange(SimRate::SLOW);
 		}
-
-		//speed change input
-		if (i->getType() == InputType::INPUT_SPEED_CHANGE)
+		else
 		{
-			cout << "Controller got an InputSpeedChange" << endl;
-			bool incr = static_cast<InputChangeSpeed*>(i)->isIncrease();
-			bool decr = static_cast<InputChangeSpeed*>(i)->isDecrease();
-			cout << "SpeedChange is an increase: " << incr << endl;
-			cout << "SpeedChange is a decrease: " << decr << endl;
-			if (incr)
-			{
-				e = new EventSpeedChange(SimRate::SPEED);
-			}
-			else if (decr)
-			{
-				e = new EventSpeedChange(SimRate::SLOW);
-			}
-			else
-			{
-				e = new EventSpeedChange(SimRate::PAUSE);
-			}
+			e = new EventSpeedChange(SimRate::PAUSE);
 		}
+	}
 
 
-		if (e != nullptr)
+	if (e != nullptr)
+	{
+		cout << "Controller produced an Event of EventType:";
+		switch (e->getType())
 		{
-			eventQueue.push(e);
+		case EventType::EVENT_CLOSE: cout << " EventClose" << endl; break;
+		case EventType::EVENT_PAUSE: cout << " EventPause" << endl; break;
+		case EventType::EVENT_SPEEDCHANGE: cout << " EventSpeedChange" << endl; break;
 		}
+		eventQueue.push(e);
+	}
 
-		//deallocate memory
-		if (i != nullptr)
-		{
-			delete i;
-			i = nullptr;
-		}
+	//deallocate memory
+	if (i != nullptr)
+	{
+		delete i;
+		i = nullptr;
 	}
 }
 
@@ -164,27 +166,40 @@ void Controller::loop()
 		this->takeInput();
 
 		//2. process Inputs from InputQueue into Events for EventQueue
-		this->parseInput();
+		while (inputQueue.empty() == false)
+		{
+			Input* i = inputQueue.front();
+			inputQueue.pop();
+			this->parseInput(i);
+		}
 
 		//3. push Events from EventQueue to Model
 		this->notifyModel();
 
 		//4. ping Model to update and then push notices to Viewer
-		mptr->update();
-
-		//4.5 notify Model of time change
-		if (mptr->isRunning())
+		if (mptr != nullptr)
 		{
-			mptr->simUpdate(dT);
+			mptr->update();
+			//4.5 notify Model of time change
+			if (mptr->isRunning())
+			{
+				mptr->simUpdate(dT);
+			}
 		}
 
 		//5. ping Viewer to update
-		vptr->update();
+		if (vptr != nullptr)
+		{
+			vptr->update();
+		}
 
 		//6. update counter for time since prev iteration
-		if(mptr->isRunning())
+		if (mptr != nullptr)
 		{
-			setLastupdate(currTime);
+			if (mptr->isRunning())
+			{
+				setLastupdate(currTime);
+			}
 		}
 
 

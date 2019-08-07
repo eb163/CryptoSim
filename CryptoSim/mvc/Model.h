@@ -51,6 +51,8 @@ public:
 	void takeEvent(Event* e);
 	void update();
 
+	Notice* debugNotice();
+
 	bool isRunning();
 	void run();
 	void pause();

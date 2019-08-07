@@ -45,7 +45,7 @@ public:
 
 	//todo
 	//implement Interface methods
-	void parseInput();
+	void parseInput(Input* i);
 	void notifyModel();
 	void takeInput(); //read all inputs from View
 	void refreshViewer();

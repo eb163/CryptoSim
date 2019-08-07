@@ -40,9 +40,9 @@ void unitTestDriver();
 
 void unitTestViewer();
 
-//void unitTestModel();
+void unitTestModel();
 
-//void unitTestController();
+void unitTestController();
 
 void systemTestDriver();
 
