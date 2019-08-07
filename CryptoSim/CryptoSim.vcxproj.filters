@@ -134,9 +134,6 @@
     <ClCompile Include="model\Network.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="model\Node.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="model\Transaction.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -177,6 +174,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\blockchain\Block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\blockchain\Blockchain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\blockchain\sha256.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

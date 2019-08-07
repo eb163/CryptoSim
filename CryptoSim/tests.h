@@ -6,14 +6,6 @@
 #include "debug.h"
 #include "viewer\Viewer.h"
 
-/*
-#include "viewer/SFML/Main.hpp"
-#include "viewer/SFML/Window.hpp"
-#include "viewer/SFML/Graphics.hpp"
-#include "viewer/SFML/Network.hpp"
-#include "viewer/SFML/System.hpp"
-*/
-
 char pause();
 
 void printBlockData(Block& b);

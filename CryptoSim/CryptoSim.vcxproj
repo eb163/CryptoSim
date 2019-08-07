@@ -155,6 +155,9 @@
   <ItemGroup>
     <ClCompile Include="controller\Controller.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="model\blockchain\Block.cpp" />
+    <ClCompile Include="model\blockchain\Blockchain.cpp" />
+    <ClCompile Include="model\blockchain\sha256.cpp" />
     <ClCompile Include="model\DataManager.cpp" />
     <ClCompile Include="model\Driver.cpp" />
     <ClCompile Include="model\Event.cpp" />

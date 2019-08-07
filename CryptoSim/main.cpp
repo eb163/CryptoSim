@@ -16,14 +16,6 @@
 #include "model/blockchain/Block.h"
 #include "model/blockchain/Blockchain.h"
 
-/*
-#include "viewer/SFML/Main.hpp"
-#include "viewer/SFML/Window.hpp"
-#include "viewer/SFML/Graphics.hpp"
-#include "viewer/SFML/Network.hpp"
-#include "viewer/SFML/System.hpp"
-*/
-
 #include "tests.h"
 
 int main()
